@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sushobhan Sen — Bio</title>
-  <meta name="description" content="Sushobhan Sen — Assistant Professor, Indian Institute of Technology Gandhinagar" />
+  <title>Yash Shah — Environmental Engineering (Duke University)</title>
+  <meta name="description" content="Yash Shah — PhD candidate in Environmental Engineering, Duke University. Research: carbon nitride materials, sustainability, LCA, photocatalysis." />
   <style>
-    /* Reset & base */
+    /* Clean, screenshot-like layout */
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -16,14 +16,14 @@
       background:#fff;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-      line-height:1.35;
+      line-height:1.45;
       font-size:16px;
     }
 
-    /* Top nav bar like screenshot */
+    /* Top navigation */
     .topbar{
       background:#f6f6f6;
-      border-bottom:1px solid #e0e0e0;
+      border-bottom:1px solid #e6e6e6;
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -33,18 +33,10 @@
       top:0;
       z-index:10;
     }
-    .brand{
-      font-weight:600;
-      color:#666;
-      display:flex;
-      gap:24px;
-      align-items:center;
-      font-size:15px;
-    }
-    .brand a{color:inherit; text-decoration:none; padding:6px 0}
-    .brand a.active{color:#000; font-weight:700}
-    .icons{display:flex;gap:14px; align-items:center; color:#777}
-    .icons a{color:inherit; text-decoration:none; font-size:18px; opacity:.9}
+    .nav-left{display:flex;gap:18px;align-items:center;color:#666;font-weight:600}
+    .nav-left a{color:inherit;text-decoration:none;padding:6px 0}
+    .nav-left a.active{color:#000;font-weight:700}
+    .nav-right{display:flex;gap:14px;align-items:center;color:#777}
 
     /* Page container */
     .container{
@@ -53,7 +45,7 @@
       padding:0 28px 80px;
     }
 
-    /* Two-column top area */
+    /* Grid: left info card & right portrait */
     .top-grid{
       display:grid;
       grid-template-columns: 420px 240px;
@@ -64,13 +56,12 @@
       .top-grid{grid-template-columns:1fr; gap:18px}
     }
 
-    /* Left info card (rounded, subtle border) */
+    /* Left info card */
     .info-card{
       border:2px solid #ddd;
       border-radius:8px;
       padding:22px;
       background:#fff;
-      box-shadow: none;
     }
     .info-card h1{
       margin:2px 0 8px;
@@ -85,7 +76,7 @@
       font-size:18px;
       font-weight:600;
     }
-    .info-card .inst{
+    .info-card .affil{
       color:#333;
       font-size:17px;
       margin-bottom:14px;
@@ -106,7 +97,7 @@
     }
     .cv-btn svg{width:16px;height:16px;fill:#333}
 
-    /* Portrait on right with framed border */
+    /* Portrait box with warm frame similar to screenshot */
     .portrait-box{
       border-radius:8px;
       padding:8px;
@@ -126,7 +117,7 @@
       box-shadow:0 2px 0 rgba(0,0,0,0.06);
     }
 
-    /* Intro paragraph large text, wide measure */
+    /* Large intro paragraph */
     .intro{
       margin-top:28px;
       font-size:20px;
@@ -136,7 +127,7 @@
     }
     .intro p{margin:0 0 18px}
 
-    /* Sections: In the news, Contact me */
+    /* Sections with icon column */
     .section{
       margin-top:34px;
       display:flex;
@@ -169,118 +160,133 @@
     }
     .news-list li{margin:8px 0; font-size:15px}
 
-    /* Contact block styled like screenshot (panel with left border highlight) */
+    /* Contact panel */
     .contact{
       border-left:6px solid #eee;
       background:#fff;
       padding:18px;
       border-radius:4px;
-      box-shadow:none;
       margin-top:8px;
     }
-    .contact strong{display:block; margin-top:10px}
-    .contact .email{font-weight:700; margin-top:10px}
+    .contact .email{font-weight:700;margin-top:10px}
 
-    /* Footer small */
+    /* Publications mini-list */
+    .pub-list{margin:0;padding-left:20px}
+    .pub-list li{margin:8px 0;font-size:15px}
+
     footer{margin-top:44px;color:#777;font-size:14px}
   </style>
 </head>
 <body>
   <div class="topbar" role="banner">
-    <div class="brand" aria-hidden="false">
-      <a href="#" class="active">Sushobhan Sen</a>
+    <div class="nav-left">
+      <a href="#" class="active">Yash Shah</a>
       <a href="#">Bio</a>
       <a href="#">Publications</a>
       <a href="#">Research</a>
       <a href="#">Teaching</a>
-      <a href="#">Travel</a>
+      <a href="#">Contact</a>
     </div>
-
-    <div class="icons" aria-hidden="false">
-      <!-- simple placeholders for icons -->
-      <a href="#" title="email">✉️</a>
-      <a href="#" title="github">🐙</a>
-      <a href="#" title="google scholar">🔎</a>
-      <a href="#" title="linkedin">in</a>
+    <div class="nav-right" aria-hidden="false">
+      <a href="mailto:shah.yash@duke.edu" title="Email">✉️</a>
+      <a href="https://linkedin.com/in/yash-uday-shah" target="_blank" rel="noopener">in</a>
+      <span style="color:#999;font-size:14px">+1-412-785-4940</span>
     </div>
   </div>
 
   <main class="container" role="main">
     <div class="top-grid">
-      <!-- Left info card -->
+      <!-- Left card -->
       <aside class="info-card" aria-labelledby="name">
-        <h1 id="name">Sushobhan Sen</h1>
-        <div class="role">Assistant Professor</div>
-        <div class="inst">Indian Institute of Technology<br/>Gandhinagar</div>
+        <h1 id="name">Yash Shah</h1>
+        <div class="role">PhD Candidate — Environmental Engineering</div>
+        <div class="affil">Duke University — Focus: Material Chemistry & Sustainability</div>
 
-        <a class="cv-btn" href="/cv.pdf" download>
-          <!-- cloud/download icon -->
+        <a class="cv-btn" href="/mnt/data/CV__Shah.pdf" download>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.35 10.04A7 7 0 0 0 5 9a5.5 5.5 0 0 0 .1 11h13.25A3.5 3.5 0 0 0 22 16.5c0-2.22-1.78-4.02-2.65-6.46zM12 12v6m-3-3 3 3 3-3" stroke="#333" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-          Curriculum Vitae
+          Download CV
         </a>
+
+        <div style="margin-top:14px;color:#444;font-size:15px">
+          <div><strong>Email:</strong> <a href="mailto:shah.yash@duke.edu">shah.yash@duke.edu</a></div>
+          <div style="margin-top:6px"><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/yash-uday-shah" target="_blank" rel="noopener">linkedin.com/in/yash-uday-shah</a></div>
+          <div style="margin-top:6px"><strong>Phone:</strong> +1-412-785-4940</div>
+        </div>
       </aside>
 
-      <!-- Right portrait block -->
+      <!-- Right portrait (replace src with actual headshot if you have one) -->
       <div class="portrait-box" aria-hidden="false">
-        <!-- update src if image location changes -->
-        <img src="/mnt/data/4ce82971-8035-4984-aa02-aa9dcb98b08a.png" alt="Sushobhan Sen portrait">
+        <img src="https://via.placeholder.com/200x260?text=Photo" alt="Portrait — Yash Shah">
       </div>
     </div>
 
-    <!-- Big intro paragraph like screenshot -->
+    <!-- Intro paragraph pulled from CV (summary) -->
     <section class="intro" aria-labelledby="intro-heading">
       <p id="intro-heading">
-        I am an Assistant Professor in the Built Environment Lab at the Department of Civil Engineering at Indian Institute of Technology (IIT) Gandhinagar. I hold a PhD in civil engineering from the University of Illinois at Urbana–Champaign, and was a postdoc for 3 years at the University of Pittsburgh. My research interests are in the field of climate change adaptation of urban infrastructure, with a specific focus on pavements. My skills include experimental thermal and optical characterization of construction materials, computational modeling, and machine learning.
+        I am a PhD candidate in Environmental Engineering at Duke University studying structure–property–sustainability relationships for engineered nanomaterials with applications in antimicrobial technologies, environmental remediation, and energy. My work integrates material design and advanced characterization (XPS, XRD, TEM), experimental reactor design, and life cycle assessment (SimaPro) to develop sustainable, high-performing carbon nitride and carbon nanoparticle materials. I lead LCA studies, develop novel material selection frameworks, and collaborate with industry partners on sustainability screening and decarbonization pathways.
       </p>
     </section>
 
-    <!-- In the news -->
-    <section class="section" aria-labelledby="news-heading">
+    <!-- Research highlights -->
+    <section class="section" aria-labelledby="research-heading">
       <div class="left" aria-hidden="true">
-        <!-- news icon -->
-        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="2" y="5" width="20" height="14" stroke="#444" stroke-width="1.2" rx="1.5" />
-          <path d="M7 9h6" stroke="#444" stroke-width="1.2" stroke-linecap="round"/>
-          <path d="M7 12h10" stroke="#444" stroke-width="1.2" stroke-linecap="round"/>
-          <path d="M7 15h4" stroke="#444" stroke-width="1.2" stroke-linecap="round"/>
-        </svg>
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2v20" stroke="#444" stroke-width="1.2" stroke-linecap="round"/><circle cx="12" cy="7" r="2" stroke="#444" stroke-width="1.2"/></svg>
       </div>
       <div class="content">
-        <h2 id="news-heading">In the news</h2>
+        <h2 id="research-heading">Selected research</h2>
         <ul class="news-list">
-          <li>The International Society for Concrete Pavements covered my paper in <em>Nature Communications</em> — read the article <a href="#">here</a>.</li>
-          <li>My interview with the Illinois Center for Transportation in my last few days at the University of Illinois — <a href="#">read</a>.</li>
-          <li>The News-Gazette interviewed me on some of my research in Dec, 2016.</li>
-          <li>The US Environmental Protection Agency (EPA) covered some of my work in their Heat Island Newsletter (navigate to the October 2019 edition).</li>
-          <li>I was in the spotlight for the February, 2018 edition of the Illinois Center for Transportation’s newsletter.</li>
+          <li><strong>Tuning reactive species production of graphitic carbon nitride</strong> — oxygen doping strategies for enhanced visible-light activity (Duke University).</li>
+          <li><strong>Respiratory pathogen inactivation in drinking water</strong> — reservoir reactor achieving &gt;99.99% photocatalytic inactivation of <em>P. aeruginosa</em>.</li>
+          <li><strong>Life cycle assessment for scaled-up nanoparticle production</strong> — LCA hotspots and decarbonization for carbon nanoparticle and CN material processes (industry collaborations).</li>
         </ul>
       </div>
     </section>
 
-    <!-- Contact me section -->
+    <!-- Publications -->
+    <section class="section" aria-labelledby="pub-heading">
+      <div class="left" aria-hidden="true">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" stroke="#444" stroke-width="1.2" rx="1.5"/><path d="M7 9h6" stroke="#444" stroke-width="1.2"/><path d="M7 12h10" stroke="#444" stroke-width="1.2"/></svg>
+      </div>
+      <div class="content">
+        <h2 id="pub-heading">Selected publications</h2>
+        <ul class="pub-list">
+          <li>Shah, Y., & Gilbertson, L. M. (2025). <em>Tuning reactive species production of graphitic carbon nitride via oxygen doping</em>. ACS Sustainable Chemistry & Engineering.</li>
+          <li>Modi, S., Shah, Y., Okonkwo, O., Gilbertson, L. M., & Biswas, P. (2025). <em>Toward Sustainable Scaled-Up Manufacturing of Lignin-Derived Carbon Nanoparticles</em>. ACS Environ. Sci. & Technol.</li>
+          <li>Shah, Y., & Gilbertson, L. M. (2024). <em>Balancing functional properties and environmental impact of graphitic carbon nitride</em>. RSC Environmental Science: Nano, 11(1), 78–90.</li>
+        </ul>
+        <div style="margin-top:10px"><a href="/mnt/data/CV__Shah.pdf" class="cv-btn" download>Full CV (PDF)</a></div>
+      </div>
+    </section>
+
+    <!-- Skills & methods -->
+    <section class="section" aria-labelledby="skills-heading">
+      <div class="left" aria-hidden="true">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12h18" stroke="#444" stroke-width="1.2"/></svg>
+      </div>
+      <div class="content">
+        <h2 id="skills-heading">Skills & methods</h2>
+        <p style="margin:0 0 8px">Material characterization (XPS, XRD, TEM, BET), nanomaterial synthesis, ROS assays, reactor design, microbiology, LCA (SimaPro, ecoinvent/USLCI), and data analysis (OriginLab, Minitab).</p>
+      </div>
+    </section>
+
+    <!-- Contact -->
     <section class="section" aria-labelledby="contact-heading">
       <div class="left" aria-hidden="true">
-        <!-- contact icon -->
-        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <rect x="3" y="6" width="18" height="12" stroke="#444" stroke-width="1.2" rx="1.5"/>
-          <path d="M3 8.5h18" stroke="#444" stroke-width="1.2" stroke-linecap="round"/>
-        </svg>
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="12" stroke="#444" stroke-width="1.2" rx="1.5"/><path d="M3 8.5h18" stroke="#444" stroke-width="1.2" stroke-linecap="round"/></svg>
       </div>
-
       <div class="content">
-        <h2 id="contact-heading">Contact me</h2>
+        <h2 id="contact-heading">Contact</h2>
         <div class="contact" role="region" aria-label="Contact information">
-          <div>AB3/306C, Indian Institute of Technology Gandhinagar</div>
-          <div>Palaj, Gandhinagar</div>
-          <div>Gujarat 382355,</div>
-          <div>India,</div>
-          <div class="email">Email: sushobhan.sen (at) iitgn (dot) ac (dot) in</div>
+          <div><strong>Email:</strong> <a href="mailto:shah.yash@duke.edu">shah.yash@duke.edu</a></div>
+          <div style="margin-top:8px"><strong>Phone:</strong> +1-412-785-4940</div>
+          <div style="margin-top:8px"><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/yash-uday-shah" target="_blank" rel="noopener">linkedin.com/in/yash-uday-shah</a></div>
         </div>
       </div>
     </section>
 
     <footer>
-      © <span id="year"></span> Sushobhan Sen — Indian Institute of Technology Gandhinagar
+      © <span id="year"></span> Yash Shah — PhD Candidate, Duke University
+      <div style="font-size:12px;color:#999;margin-top:6px">CV source: uploaded PDF (referenced here). :contentReference[oaicite:1]{index=1}</div>
     </footer>
   </main>
 
