@@ -5,15 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Yash Shah</title>
   <style>
-    :root{
-      --bar-bg:#f6f6f6;
-      --text:#222;
-      --muted:#444;
-      --accent:#0033a0;
-      --max-width:1100px;
+    :root {
+      --bar-bg: #f6f6f6;
+      --text: #222;
+      --muted: #444;
+      --accent: #0033a0;
+      --max-width: 1100px;
     }
 
-    /* Page basics */
     body {
       margin: 0;
       font-family: "Helvetica Neue", Arial, sans-serif;
@@ -22,292 +21,252 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
     }
 
-    /* Topbar */
     .topbar {
       background: var(--bar-bg);
       border-bottom: 1px solid #e6e6e6;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 20px;
       width: 100%;
       box-sizing: border-box;
     }
-    .topbar-inner{
-      width:100%;
-      max-width:var(--max-width);
-      margin:0 auto;
-      display:flex;
-      align-items:center;
-      gap:16px;
-      justify-content:space-between;
-      box-sizing:border-box;
+
+    .topbar-inner {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 12px 20px;
+      box-sizing: border-box;
     }
 
-    /* Left area: logo + name */
     .brand {
-      display:flex;
-      align-items:center;
-      gap:12px;
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
     }
+
     .logo img {
-      height:32px;
-      width:auto;
-      display:block;
+      height: 32px;
+      width: auto;
+      display: block;
     }
-    .name-block{
-      display:flex;
-      flex-direction:column;
-      line-height:1.05;
+
+    .name-block {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
     }
+
     .name-block .name {
-      font-weight:700;
-      font-size:16px;
-      color:var(--text);
-      margin:0;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text);
+      margin: 0;
     }
+
     .name-block .role {
-      font-size:13px;
-      color:var(--muted);
-      margin:2px 0 0 0;
-    }
-    .name-block .affil {
-      font-size:12px;
-      color:var(--muted);
-      margin:2px 0 0 0;
+      font-size: 13px;
+      color: var(--muted);
+      margin: 2px 0 0 0;
     }
 
-    /* Nav */
     .nav {
-      display:flex;
-      align-items:center;
-      gap:18px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
     }
+
     .nav a {
-      color:var(--muted);
-      text-decoration:none;
-      font-weight:600;
-      font-size:14px;
-      white-space:nowrap;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      white-space: nowrap;
     }
-    .nav a:hover{ color:var(--text); }
 
-    /* Dropdown */
-    .dropdown { position:relative; display:inline-block; }
-    .dropdown-content{
-      display:none;
-      position:absolute;
-      top:calc(100% + 6px);
-      left:0;
-      background:#fff;
-      min-width:160px;
-      border:1px solid #ddd;
-      border-radius:6px;
-      box-shadow:0 6px 18px rgba(0,0,0,0.08);
-      z-index:40;
+    .nav a:hover {
+      color: var(--text);
     }
-    .dropdown-content a{
-      display:block; padding:10px 12px; color:var(--muted); text-decoration:none; font-weight:500;
-    }
-    .dropdown-content a:hover{ background:#fafafa; color:var(--text); }
-    .dropdown:hover .dropdown-content{ display:block; }
 
-    /* Responsive nav (mobile) */
-    .burger {
-      display:none;
-      background:transparent;
-      border:0;
-      font-size:20px;
-      cursor:pointer;
-      padding:6px;
+    .dropdown {
+      position: relative;
+      display: inline-block;
     }
-    .mobile-nav {
-      display:none;
+
+    .dropdown-content {
+      display: none;
       position: absolute;
-      top: 100%;
-      right: 0;
-      background:#fff;
-      width: 90%;
-      max-width:300px;
-      border:1px solid #e6e6e6;
-      border-radius:8px;
-      box-shadow:0 8px 24px rgba(0,0,0,0.12);
-      z-index:50;
+      top: calc(100% + 6px);
+      left: 0;
+      background: #fff;
+      min-width: 160px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      z-index: 40;
     }
-    .mobile-nav a{
-      display:block; padding:12px 14px; border-bottom:1px solid #f2f2f2;
-      color:var(--muted); text-decoration:none; font-weight:600;
-    }
-    .mobile-nav a:last-child{ border-bottom:0; }
 
-    /* MAIN ROW: photo left, about right */
+    .dropdown-content a {
+      display: block;
+      padding: 10px 12px;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .dropdown-content a:hover {
+      background: #fafafa;
+      color: var(--text);
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Main content */
     .main-row {
-      width:100%;
-      max-width:var(--max-width);
-      display:flex;
-      gap:32px;
-      align-items:flex-start;
-      padding:36px 20px 40px;
-      box-sizing:border-box;
+      width: 100%;
+      max-width: var(--max-width);
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+      padding: 36px 20px 20px;
+      box-sizing: border-box;
     }
+
     .photo {
-      flex:0 0 auto;
-      max-width:5cm;
-      max-height:5cm;
-      border-radius:8px;
-      overflow:hidden;
+      flex: 0 0 auto;
+      max-width: 5cm;
+      max-height: 5cm;
+      border-radius: 8px;
+      overflow: hidden;
     }
-    .photo img{ width:100%; height:auto; display:block; }
+
+    .photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
 
     .about {
-      flex:1 1 0;
-      font-size:17px;
-      color:#333;
-      line-height:1.6;
-      text-align:justify;
+      flex: 1 1 0;
+      font-size: 17px;
+      color: #333;
+      line-height: 1.6;
+      text-align: justify;
     }
-    .about h2{ margin-top:0; margin-bottom:12px; font-size:24px; }
 
-    /* Toolkit */
+    .about h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    /* Research Toolkit section */
     .toolkit {
-      width:100%;
-      max-width:900px;
-      padding:0 20px 60px;
-      text-align:center;
-      box-sizing:border-box;
-    }
-    .toolkit h2{ font-size:24px; margin-bottom:18px; }
-    .toolkit img{ max-width:100%; height:auto; display:block; margin:0 auto; border:none; box-shadow:none; }
-
-    /* small screens */
-    @media (max-width:900px){
-      .topbar-inner{ gap:10px; }
-      .brand{ gap:8px; }
-      .name-block .name{ font-size:15px; }
-      .nav{ display:none; }
-      .burger{ display:block; color:var(--muted); }
-      .mobile-nav{ right:20px; }
-
-      .main-row{ flex-direction:column; padding:20px; align-items:center; gap:20px; }
-      .photo{ max-width:40vw; max-height:40vw; }
-      .about{ text-align:justify; }
-      .toolkit{ padding:0 16px 40px; }
+      width: 100%;
+      max-width: var(--max-width);
+      padding: 10px 20px 50px;
+      text-align: left;
+      box-sizing: border-box;
     }
 
-    /* ensure clickable focus outlines */
-    a:focus, button:focus{ outline:2px solid rgba(0,51,160,0.12); outline-offset:2px; }
+    .toolkit h2 {
+      font-size: 24px;
+      margin-bottom: 16px;
+      margin-left: calc(5cm + 52px); /* aligns with About text */
+    }
+
+    .toolkit img {
+      display: block;
+      max-width: calc(100% - 5cm - 52px);
+      margin-left: calc(5cm + 52px);
+      height: auto;
+      border: none;
+      box-shadow: none;
+    }
+
+    @media (max-width: 900px) {
+      .main-row {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        gap: 20px;
+      }
+
+      .photo {
+        max-width: 40vw;
+        max-height: 40vw;
+      }
+
+      .toolkit {
+        padding: 0 16px 40px;
+        text-align: center;
+      }
+
+      .toolkit h2 {
+        margin-left: 0;
+      }
+
+      .toolkit img {
+        margin-left: 0;
+        max-width: 100%;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <header class="topbar" role="banner">
+  <header class="topbar">
     <div class="topbar-inner">
-      <div class="brand" aria-hidden="false">
+      <div class="brand">
         <div class="logo">
           <img src="duke_university-logo_brandlogos.net_hahhm-512x178.png" alt="Duke University logo">
         </div>
-        <div class="name-block" aria-label="Site owner">
-          <div class="name">Yash Shah</div>
+        <div class="name-block">
+          <div class="name"><strong>Yash Shah</strong></div>
           <div class="role">Ph.D. Candidate in Environmental Engineering</div>
-          <div class="affil">Duke University</div>
         </div>
       </div>
 
-      <nav>
-        <button class="burger" id="burger" aria-expanded="false" aria-label="Open menu">☰</button>
-
-        <div class="nav" id="desktopNav" role="navigation" aria-label="Main navigation">
-          <div class="dropdown">
-            <a href="#">Projects ▾</a>
-            <div class="dropdown-content" role="menu" aria-label="Projects submenu">
-              <a href="#">Life Cycle Assessment</a>
-              <a href="#">Material Science</a>
-            </div>
-          </div>
-          <a href="#">Publications</a>
-          <a href="#">Talks</a>
-          <a href="#">Leadership</a>
-          <a href="#">CV</a>
-          <a href="#">Contact</a>
-        </div>
-
-        <!-- Mobile nav panel (toggle) -->
-        <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+      <nav class="nav">
+        <div class="dropdown">
           <a href="#">Projects ▾</a>
-          <div style="padding:0 10px 8px 10px;font-size:14px;color:var(--muted)">
-            <a href="#" style="display:block;padding:8px 0;text-decoration:none;color:var(--muted)">LCA</a>
-            <a href="#" style="display:block;padding:8px 0;text-decoration:none;color:var(--muted)">Material Science</a>
+          <div class="dropdown-content">
+            <a href="#">LCA</a>
+            <a href="#">Material Science</a>
           </div>
-          <a href="#">Publications</a>
-          <a href="#">Talks</a>
-          <a href="#">Leadership</a>
-          <a href="#">CV</a>
-          <a href="#">Contact</a>
         </div>
+        <a href="#">Publications</a>
+        <a href="#">Talks</a>
+        <a href="#">Leadership</a>
+        <a href="#">CV</a>
+        <a href="#">Contact</a>
       </nav>
     </div>
   </header>
 
-  <main role="main">
-    <div class="main-row">
-      <figure class="photo" aria-hidden="false">
-        <img src="photo.png" alt="Profile photo">
-      </figure>
+  <main class="main-row">
+    <figure class="photo">
+      <img src="photo.png" alt="Profile photo">
+    </figure>
 
-      <section class="about" aria-labelledby="about-heading">
-        <h2 id="about-heading">About</h2>
-        <p>
-          I am a chemical engineer by training and currently a Ph.D. candidate in Environmental Engineering at Duke University with 7+ years of experience across environmental catalysis, materials design and characterization, and life cycle assessment (LCA). My doctoral research establishes structure–property–sustainability relationships for engineered nanomaterials in antimicrobial, environmental, and energy applications. I have led collaborative LCA projects with academic and industry partners, including BASF Corporation, with findings published in <em>Environmental Science & Technology</em>, <em>Journal of the American Chemical Society</em>, and <em>Sustainable Chemistry & Engineering</em>. 
-        </p>
-        <p>
-          I earned B.Tech. + M.Tech. in Chemical Engineering from the National Institute of Technology (NIT) Rourkela, India (Class of 2021), graduating Rank 1 with the Institute Silver Medal for academic excellence. During my studies, I completed multiple research internships with <a href="https://ch.iitr.ac.in/~CH/Taraknath_Das" target="_blank" rel="noopener">Dr. Taraknath Das</a> at the Indian Institute of Technology Roorkee on catalytic oxidation of volatile organic compounds; with <a href="https://engineering.usask.ca/people/cbe/soltan,jafar.php" target="_blank" rel="noopener">Dr. Jafar Soltan</a> at the University of Saskatchewan on designing catalytic ozonation reactors for the removal of recalcitrant water pollutants. As part of my master’s thesis with Dr. Sujit Sen at NIT Rourkela, I developed a sustainable approach for synthesizing metal oxide catalysts using biogenic extracts from plant leaves.
-        </p>
-      </section>
-    </div>
-
-    <section class="toolkit" aria-labelledby="toolkit-heading">
-      <h2 id="toolkit-heading">My Research Toolkit</h2>
-      <img src="/toolkit.png" alt="Research Toolkit diagram">
+    <section class="about">
+      <h2>About</h2>
+      <p>
+        I am a chemical engineer by training and currently a Ph.D. candidate in Environmental Engineering at Duke University with 7+ years of experience across environmental catalysis, materials design and characterization, and life cycle assessment (LCA). I have led collaborative LCA projects with academic and industry partners, including BASF Corporation, with findings published in <em>Environmental Science & Technology</em>, <em>Journal of the American Chemical Society</em>, and <em>Sustainable Chemistry & Engineering</em>. My doctoral research establishes structure–property–sustainability relationships for engineered nanomaterials in antimicrobial, environmental, and energy applications.
+      </p>
+      <p>
+        I earned dual Bachelor’s and Master’s degrees in Chemical Engineering from the National Institute of Technology (NIT) Rourkela, India (Class of 2021), graduating Rank 1 with the Institute Silver Medal for academic excellence. During my studies, I completed multiple research internships with <a href="https://ch.iitr.ac.in/~CH/Taraknath_Das" target="_blank" rel="noopener">Dr. Taraknath Das</a> at the Indian Institute of Technology Roorkee on catalytic oxidation of volatile organic compounds; with <a href="https://engineering.usask.ca/people/cbe/soltan,jafar.php" target="_blank" rel="noopener">Dr. Jafar Soltan</a> at the University of Saskatchewan on designing catalytic ozonation reactors for the removal of recalcitrant water pollutants. As part of my master’s thesis with Dr. Sujit Sen at NIT Rourkela, I developed a sustainable approach for synthesizing metal oxide catalysts using biogenic extracts from plant leaves.
+      </p>
     </section>
   </main>
 
-  <script>
-    // mobile nav toggle
-    (function(){
-      const burger = document.getElementById('burger');
-      const mobileNav = document.getElementById('mobileNav');
-      let open = false;
-      burger.addEventListener('click', () => {
-        open = !open;
-        mobileNav.style.display = open ? 'block' : 'none';
-        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-        mobileNav.setAttribute('aria-hidden', open ? 'false' : 'true');
-      });
-
-      // close mobile nav when clicking outside
-      document.addEventListener('click', (e) => {
-        if(!open) return;
-        const inside = e.target.closest('.mobile-nav') || e.target.closest('.burger');
-        if(!inside){
-          open = false;
-          mobileNav.style.display = 'none';
-          burger.setAttribute('aria-expanded','false');
-          mobileNav.setAttribute('aria-hidden','true');
-        }
-      });
-
-      // ensure mobile nav hidden on resize > breakpoint
-      window.addEventListener('resize', () => {
-        if(window.innerWidth > 900){
-          mobileNav.style.display = 'none';
-          burger.setAttribute('aria-expanded','false');
-          mobileNav.setAttribute('aria-hidden','true');
-        }
-      });
-    })();
-  </script>
+  <section class="toolkit">
+    <h2>My Research Toolkit</h2>
+    <img src="/mnt/data/5f526522-baf6-420d-a79e-73b9661a5d5d.png" alt="Research Toolkit diagram">
+  </section>
 </body>
 </html>
