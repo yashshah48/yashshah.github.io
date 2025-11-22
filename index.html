@@ -19,17 +19,27 @@
       border-bottom: 1px solid #e6e6e6;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       padding: 14px 28px;
-      gap: 24px;
       width: 100%;
+      box-sizing: border-box;
     }
-    .topbar a {
+    .logo img {
+      height: 32px; /* keeps logo visually balanced without enlarging bar */
+      width: auto;
+      display: block;
+    }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    .nav-links a {
       color: #444;
       text-decoration: none;
       font-weight: 600;
     }
-    .topbar a:hover {
+    .nav-links a:hover {
       color: #000;
     }
     .photo {
@@ -49,11 +59,16 @@
 </head>
 <body>
   <div class="topbar">
-    <a href="#">Projects</a>
-    <a href="#">Publications</a>
-    <a href="#">Talks</a>
-    <a href="#">CV</a>
-    <a href="#">Contact</a>
+    <div class="logo">
+      <img src="duke_university-logo_brandlogos.net_hahhm-512x178" alt="Duke University logo">
+    </div>
+    <div class="nav-links">
+      <a href="#">Projects</a>
+      <a href="#">Publications</a>
+      <a href="#">Talks</a>
+      <a href="#">CV</a>
+      <a href="#">Contact</a>
+    </div>
   </div>
 
   <div class="photo">
