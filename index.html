@@ -5,236 +5,142 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Yash Shah</title>
   <style>
-    :root {
-      --bar-bg: #f6f6f6;
-      --text: #222;
-      --muted: #444;
-      --accent: #0033a0;
-      --max-width: 1100px;
+    :root{
+      --bar-bg:#f6f6f6;
+      --text:#222;
+      --muted:#444;
+      --accent:#0033a0;
+      --max-width:1100px;
+      --photo-w:5cm; /* photo column width */
+      --gap:32px;
     }
 
-    body {
-      margin: 0;
-      font-family: "Helvetica Neue", Arial, sans-serif;
-      background: #fff;
-      color: var(--text);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    body{
+      margin:0;
+      font-family:"Helvetica Neue", Arial, sans-serif;
+      color:var(--text);
+      background:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
     }
 
-    .topbar {
-      background: var(--bar-bg);
-      border-bottom: 1px solid #e6e6e6;
-      width: 100%;
-      box-sizing: border-box;
+    /* topbar */
+    .topbar{ width:100%; background:var(--bar-bg); border-bottom:1px solid #e6e6e6; }
+    .topbar-inner{
+      max-width:var(--max-width);
+      width:100%;
+      margin:0 auto;
+      padding:12px 20px;
+      box-sizing:border-box;
+      display:flex;
+      align-items:flex-end; /* align role baseline with logo bottom */
+      justify-content:space-between;
+      gap:12px;
+    }
+    .brand{ display:flex; align-items:flex-end; gap:12px; }
+    .logo img{ height:32px; display:block; width:auto; }
+    .name-block{ display:flex; flex-direction:column; line-height:1.15; }
+    .name{ font-weight:700; font-size:16px; margin:0; }
+    .role{ font-size:13px; color:var(--muted); margin-top:2px; }
+
+    nav.nav{ display:flex; gap:18px; align-items:center; }
+    nav a{ color:var(--muted); text-decoration:none; font-weight:600; font-size:14px; white-space:nowrap; }
+    nav a:hover{ color:var(--text); }
+
+    .dropdown{ position:relative; display:inline-block; }
+    .dropdown-content{
+      display:none;
+      position:absolute;
+      top:calc(100% + 6px);
+      left:0;
+      background:#fff;
+      min-width:160px;
+      border:1px solid #ddd;
+      border-radius:6px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.08);
+      z-index:40;
+    }
+    .dropdown:hover .dropdown-content{ display:block; }
+    .dropdown-content a{ display:block; padding:10px 12px; color:var(--muted); text-decoration:none; font-weight:500; }
+    .dropdown-content a:hover{ background:#fafafa; color:var(--text); }
+
+    /* MAIN: use grid so right-column content (About & Toolkit) lines up perfectly */
+    main{
+      width:100%;
+      max-width:var(--max-width);
+      box-sizing:border-box;
+      padding:36px 20px 40px;
+      margin:0 auto;
+    }
+    .grid {
+      display:grid;
+      grid-template-columns: var(--photo-w) 1fr;
+      column-gap: var(--gap);
+      align-items:start;
+      row-gap:20px;
     }
 
-    .topbar-inner {
-      width: 100%;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      padding: 12px 20px;
-      box-sizing: border-box;
+    /* photo column */
+    .photo{
+      width:var(--photo-w);
+      max-width:100%;
+      border-radius:8px;
+      overflow:hidden;
+      align-self:start;
+    }
+    .photo img{ width:100%; height:auto; display:block; }
+
+    /* about column (spans second column) */
+    .about{
+      font-size:17px;
+      line-height:1.6;
+      color:#333;
+      text-align:justify;
+    }
+    .about h2{ margin-top:0; margin-bottom:12px; font-size:24px; }
+
+    /* toolkit sits in second column; moved upward slightly with negative margin */
+    .toolkit{
+      grid-column: 2 / 3; /* forces toolkit to start under the About column */
+      margin-top: -8px; /* move up a touch (one or two lines) as requested */
+      padding-top:8px;
+      text-align:left;
+    }
+    .toolkit h2{ font-size:24px; margin:0 0 12px 0; }
+    .toolkit img{ width:100%; height:auto; display:block; border:none; box-shadow:none; }
+
+    /* small screens: stack */
+    @media (max-width:900px){
+      .topbar-inner{ align-items:center; flex-wrap:wrap; }
+      .grid{ grid-template-columns: 1fr; padding:0; }
+      .photo{ width:40vw; max-width:40vw; margin:0 auto; }
+      .about{ text-align:justify; }
+      .toolkit{ grid-column:1/2; margin-top:14px; text-align:center; }
+      .toolkit img{ margin:0 auto; max-width:100%; }
+      nav.nav{ display:none; } /* you likely have mobile nav elsewhere; keep it hidden here */
     }
 
-    .brand {
-      display: flex;
-      align-items: flex-end;
-      gap: 12px;
-    }
-
-    .logo img {
-      height: 32px;
-      width: auto;
-      display: block;
-    }
-
-    .name-block {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.2;
-    }
-
-    .name-block .name {
-      font-weight: 700;
-      font-size: 16px;
-      color: var(--text);
-      margin: 0;
-    }
-
-    .name-block .role {
-      font-size: 13px;
-      color: var(--muted);
-      margin: 2px 0 0 0;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-
-    .nav a {
-      color: var(--muted);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 14px;
-      white-space: nowrap;
-    }
-
-    .nav a:hover {
-      color: var(--text);
-    }
-
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      top: calc(100% + 6px);
-      left: 0;
-      background: #fff;
-      min-width: 160px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-      z-index: 40;
-    }
-
-    .dropdown-content a {
-      display: block;
-      padding: 10px 12px;
-      color: var(--muted);
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .dropdown-content a:hover {
-      background: #fafafa;
-      color: var(--text);
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-    /* Main content */
-    .main-row {
-      width: 100%;
-      max-width: var(--max-width);
-      display: flex;
-      gap: 32px;
-      align-items: flex-start;
-      padding: 36px 20px 20px;
-      box-sizing: border-box;
-    }
-
-    .photo {
-      flex: 0 0 auto;
-      max-width: 5cm;
-      max-height: 5cm;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .photo img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .about {
-      flex: 1 1 0;
-      font-size: 17px;
-      color: #333;
-      line-height: 1.6;
-      text-align: justify;
-    }
-
-    .about h2 {
-      margin-top: 0;
-      margin-bottom: 12px;
-      font-size: 24px;
-    }
-
-    /* Research Toolkit section */
-    .toolkit {
-      width: 100%;
-      max-width: var(--max-width);
-      padding: 10px 20px 50px;
-      text-align: left;
-      box-sizing: border-box;
-    }
-
-    .toolkit h2 {
-      font-size: 24px;
-      margin-bottom: 16px;
-      margin-left: calc(5cm + 52px); /* aligns with About text */
-    }
-
-    .toolkit img {
-      display: block;
-      max-width: calc(100% - 5cm - 52px);
-      margin-left: calc(5cm + 52px);
-      height: auto;
-      border: none;
-      box-shadow: none;
-    }
-
-    @media (max-width: 900px) {
-      .main-row {
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-        gap: 20px;
-      }
-
-      .photo {
-        max-width: 40vw;
-        max-height: 40vw;
-      }
-
-      .toolkit {
-        padding: 0 16px 40px;
-        text-align: center;
-      }
-
-      .toolkit h2 {
-        margin-left: 0;
-      }
-
-      .toolkit img {
-        margin-left: 0;
-        max-width: 100%;
-      }
-    }
+    /* accessibility focus */
+    a:focus, button:focus{ outline:2px solid rgba(0,51,160,0.12); outline-offset:2px; }
   </style>
 </head>
-
 <body>
-  <header class="topbar">
+  <header class="topbar" role="banner">
     <div class="topbar-inner">
-      <div class="brand">
-        <div class="logo">
-          <img src="duke_university-logo_brandlogos.net_hahhm-512x178.png" alt="Duke University logo">
-        </div>
+      <div class="brand" aria-hidden="false">
+        <div class="logo"><img src="duke_university-logo_brandlogos.net_hahhm-512x178.png" alt="Duke University logo"></div>
         <div class="name-block">
           <div class="name"><strong>Yash Shah</strong></div>
           <div class="role">Ph.D. Candidate in Environmental Engineering</div>
         </div>
       </div>
 
-      <nav class="nav">
-        <div class="dropdown">
-          <a href="#">Projects ▾</a>
-          <div class="dropdown-content">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="dropdown"><a href="#">Projects ▾</a>
+          <div class="dropdown-content" role="menu">
             <a href="#">LCA</a>
             <a href="#">Material Science</a>
           </div>
@@ -248,25 +154,31 @@
     </div>
   </header>
 
-  <main class="main-row">
-    <figure class="photo">
-      <img src="photo.png" alt="Profile photo">
-    </figure>
+  <main role="main">
+    <div class="grid">
+      <!-- left photo column -->
+      <figure class="photo" aria-hidden="false">
+        <img src="photo.png" alt="Profile photo">
+      </figure>
 
-    <section class="about">
-      <h2>About</h2>
-      <p>
-        I am a chemical engineer by training and currently a Ph.D. candidate in Environmental Engineering at Duke University with 7+ years of experience across environmental catalysis, materials design and characterization, and life cycle assessment (LCA). I have led collaborative LCA projects with academic and industry partners, including BASF Corporation, with findings published in <em>Environmental Science & Technology</em>, <em>Journal of the American Chemical Society</em>, and <em>Sustainable Chemistry & Engineering</em>. My doctoral research establishes structure–property–sustainability relationships for engineered nanomaterials in antimicrobial, environmental, and energy applications.
-      </p>
-      <p>
-        I earned dual Bachelor’s and Master’s degrees in Chemical Engineering from the National Institute of Technology (NIT) Rourkela, India (Class of 2021), graduating Rank 1 with the Institute Silver Medal for academic excellence. During my studies, I completed multiple research internships with <a href="https://ch.iitr.ac.in/~CH/Taraknath_Das" target="_blank" rel="noopener">Dr. Taraknath Das</a> at the Indian Institute of Technology Roorkee on catalytic oxidation of volatile organic compounds; with <a href="https://engineering.usask.ca/people/cbe/soltan,jafar.php" target="_blank" rel="noopener">Dr. Jafar Soltan</a> at the University of Saskatchewan on designing catalytic ozonation reactors for the removal of recalcitrant water pollutants. As part of my master’s thesis with Dr. Sujit Sen at NIT Rourkela, I developed a sustainable approach for synthesizing metal oxide catalysts using biogenic extracts from plant leaves.
-      </p>
-    </section>
+      <!-- right column: About -->
+      <section class="about" aria-labelledby="about-heading">
+        <h2 id="about-heading">About</h2>
+        <p>
+          I am a chemical engineer by training and currently a Ph.D. candidate in Environmental Engineering at Duke University with 7+ years of experience across environmental catalysis, materials design and characterization, and life cycle assessment (LCA). I have led collaborative LCA projects with academic and industry partners, including BASF Corporation, with findings published in <em>Environmental Science & Technology</em>, <em>Journal of the American Chemical Society</em>, and <em>Sustainable Chemistry & Engineering</em>. My doctoral research establishes structure–property–sustainability relationships for engineered nanomaterials in antimicrobial, environmental, and energy applications.
+        </p>
+        <p>
+          I earned dual Bachelor’s and Master’s degrees in Chemical Engineering from the National Institute of Technology (NIT) Rourkela, India (Class of 2021), graduating Rank 1 with the Institute Silver Medal for academic excellence. During my studies, I completed multiple research internships with <a href="https://ch.iitr.ac.in/~CH/Taraknath_Das" target="_blank" rel="noopener">Dr. Taraknath Das</a> at the Indian Institute of Technology Roorkee on catalytic oxidation of volatile organic compounds; with <a href="https://engineering.usask.ca/people/cbe/soltan,jafar.php" target="_blank" rel="noopener">Dr. Jafar Soltan</a> at the University of Saskatchewan on designing catalytic ozonation reactors for the removal of recalcitrant water pollutants. As part of my master’s thesis with Dr. Sujit Sen at NIT Rourkela, I developed a sustainable approach for synthesizing metal oxide catalysts using biogenic extracts from plant leaves.
+        </p>
+      </section>
+
+      <!-- toolkit is placed in the second column so it lines up with About -->
+      <section class="toolkit" aria-labelledby="toolkit-heading">
+        <h2 id="toolkit-heading">My Research Toolkit</h2>
+        <!-- using the uploaded file path you provided -->
+        <img src="/mnt/data/5f526522-baf6-420d-a79e-73b9661a5d5d.png" alt="Research Toolkit diagram">
+      </section>
+    </div>
   </main>
-
-  <section class="toolkit">
-    <h2>My Research Toolkit</h2>
-    <img src="toolkit.png" alt="Research Toolkit diagram">
-  </section>
 </body>
 </html>
