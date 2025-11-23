@@ -23,7 +23,6 @@
       -moz-osx-font-smoothing:grayscale;
     }
 
-    /* Topbar (same as index.html) */
     .topbar{width:100%;background:var(--bar-bg);border-bottom:1px solid #e6e6e6;}
     .topbar-inner{
       max-width:var(--max-width);width:100%;margin:0 auto;padding:12px 20px;
@@ -61,7 +60,18 @@
     .paper-row .authors{font-style:italic;color:#333;margin-bottom:8px;}
     .paper-row .doi{display:inline-block;color:var(--muted);font-size:13px;margin-bottom:8px;text-decoration:none;}
     .paper-row .doi:hover{color:var(--duke-navy);}
-    .paper-row .value{margin-top:8px;padding:12px;background:#fbfbfd;border-left:4px solid var(--duke-navy);border-radius:4px;line-height:1.5;}
+    .paper-row .value{
+      margin-top:4px;
+      padding:10px;
+      background:#fbfbfd;
+      border-left:4px solid var(--duke-navy);
+      border-radius:4px;
+      line-height:1.45;
+    }
+    .paper-row .value strong{
+      display:block;
+      margin-bottom:2px;
+    }
 
     footer{max-width:var(--max-width);margin:40px auto;padding:0 20px 40px;color:var(--muted);font-size:14px;text-align:left;}
     .me{color:var(--duke-navy);font-weight:700;font-style:italic;}
@@ -87,7 +97,6 @@
         </div>
       </div>
 
-      <!-- 🔹 Keep same Publications dropdown menu as homepage -->
       <nav class="nav">
         <div class="dropdown" data-dropdown>
           <a>Publications ▾</a>
@@ -115,7 +124,7 @@
     </p>
 
     <!-- Paper 1 -->
-    <article class="paper-row" id="paper-1">
+    <article class="paper-row">
       <img src="LCA1.jpeg" alt="LCA image 1">
       <div>
         <h2>Toward Sustainable Scaled-Up Synthesis of Lignin-Derived Carbon Nanoparticles Using a Furnace Aerosol Reactor</h2>
@@ -123,13 +132,13 @@
         <a class="doi" href="https://pubs.acs.org/doi/full/10.1021/acs.est.5c06572" target="_blank" rel="noopener">DOI: 10.1021/acs.est.5c06572</a>
         <div class="value">
           <strong>What value LCA added?</strong>
-          <p>The LCA quantified cradle-to-gate environmental hotspots for scaled-up lignin-derived carbon nanoparticle production, revealing major contributors (energy, precursors, and process yield). This enabled prioritization of process changes and material choices to reduce overall impacts and provided evidence-based targets for decarbonization and scale-up.</p>
+          <p>LCA quantified cradle-to-gate environmental hotspots for scaled-up lignin-derived carbon nanoparticle production, revealing major contributors (energy, precursors, and process yield). This enabled prioritization of process changes and material choices to reduce overall impacts and provided evidence-based targets for decarbonization and scale-up.</p>
         </div>
       </div>
     </article>
 
     <!-- Paper 2 -->
-    <article class="paper-row" id="paper-2">
+    <article class="paper-row">
       <img src="LCA2.jpeg" alt="LCA image 2">
       <div>
         <h2>Light-Driven Chemical Cascade Reduces Barriers to Hydrogen Production</h2>
@@ -143,7 +152,7 @@
     </article>
 
     <!-- Paper 3 -->
-    <article class="paper-row" id="paper-3">
+    <article class="paper-row">
       <img src="LCA3.png" alt="LCA image 3">
       <div>
         <h2>Balancing Functional Properties and Environmental Impact of Graphitic Carbon Nitride: A Case Study on Boron Doping Syntheses</h2>
@@ -165,10 +174,7 @@
   </footer>
 
   <script>
-    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Clicking logo returns to home
     document.querySelector('.brand').addEventListener('click',()=>window.location.href='/');
   </script>
 </body>
