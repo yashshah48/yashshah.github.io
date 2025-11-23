@@ -1,1 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Yash Shah — Material Science Publications</title>
+  <style>
+    :root{
+      --bar-bg:#f6f6f6;
+      --text:#222;
+      --muted:#444;
+      --duke-navy:#0033a0;
+      --max-width:1100px;
+      --img-w:140px;
+    }
+
+    body{
+      margin:0;
+      font-family:"Helvetica Neue", Arial, sans-serif;
+      color:var(--text);
+      background:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .topbar{width:100%;background:var(--bar-bg);border-bottom:1px solid #e6e6e6;}
+    .topbar-inner{
+      max-width:var(--max-width);width:100%;margin:0 auto;padding:12px 20px;
+      display:flex;align-items:flex-end;justify-content:space-between;gap:12px;box-sizing:border-box;
+    }
+    .brand{display:flex;align-items:flex-end;gap:12px;cursor:pointer;}
+    .logo img{height:32px;width:auto;display:block;}
+    .name-block{display:flex;flex-direction:column;line-height:1.15;}
+    .name{font-weight:700;font-size:16px;margin:0;}
+    .role{font-size:13px;color:var(--muted);margin-top:2px;}
+
+    nav.nav{display:flex;gap:18px;align-items:center;}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;transition:color .2s ease;}
+    nav a:hover,nav a:focus{color:var(--duke-navy);}
+
+    .dropdown{position:relative;display:inline-block;padding-bottom:2px;}
+    .dropdown> a{cursor:pointer;}
+    .dropdown-content{
+      display:none;position:absolute;top:100%;left:0;background:#fff;min-width:160px;border:1px solid #ddd;
+      border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.08);z-index:40;
+    }
+    .dropdown:hover .dropdown-content,.dropdown.open .dropdown-content{display:block;}
+    .dropdown-content a{display:block;padding:10px 12px;color:var(--muted);text-decoration:none;font-weight:500;}
+    .dropdown-content a:hover{color:var(--duke-navy);background:#fafafa;}
+
+    main{max-width:var(--max-width);margin:30px auto;padding:0 20px 80px;box-sizing:border-box;}
+    .hero{display:flex;gap:20px;align-items:center;margin-bottom:22px;}
+    .hero .back{color:var(--duke-navy);text-decoration:none;font-weight:700;}
+    .hero h1{margin:0;font-size:26px;}
+    .intro{color:#444;margin-bottom:18px;line-height:1.6;}
+
+    .paper-row{display:grid;grid-template-columns:var(--img-w) 1fr;gap:18px;align-items:start;margin-bottom:20px;padding:12px;border:1px solid #eee;border-radius:8px;background:#fff;}
+    .paper-row img{width:var(--img-w);height:auto;display:block;border-radius:6px;object-fit:cover;}
+    .paper-row h2{margin:0 0 8px 0;font-size:18px;}
+    .paper-row .authors{font-style:italic;color:#333;margin-bottom:8px;}
+    .paper-row .doi{display:inline-block;color:var(--muted);font-size:13px;margin-bottom:8px;text-decoration:none;}
+    .paper-row .doi:hover{color:var(--duke-navy);}
+    .paper-row .value{margin-top:6px;padding:10px;background:#fbfbfd;border-left:4px solid var(--duke-navy);border-radius:4px;line-height:1.45;}
+    .paper-row .value strong{display:block;margin-bottom:4px;}
+
+    footer{max-width:var(--max-width);margin:40px auto;padding:0 20px 40px;color:var(--muted);font-size:14px;text-align:left;}
+    .me{color:var(--duke-navy);font-weight:700;font-style:italic;}
+
+    @media (max-width:900px){
+      .topbar-inner{padding:10px 14px;}
+      .paper-row{grid-template-columns:1fr;}
+      .paper-row img{width:100%;max-height:220px;margin-bottom:12px;}
+      .hero{flex-direction:column;align-items:flex-start;gap:8px;}
+    }
+
+    a:focus{outline:2px solid rgba(0,51,160,0.12);outline-offset:2px;}
+  </style>
+</head>
+<body>
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+      <div class="brand" onclick="location.href='/'">
+        <div class="logo"><img src="duke_university-logo_brandlogos.net_hahhm-512x178.png" alt="Duke University logo"></div>
+        <div class="name-block">
+          <div class="name"><strong>Yash Shah</strong></div>
+          <div class="role">Ph.D. Candidate in Environmental Engineering</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <div class="dropdown" data-dropdown>
+          <a>Publications ▾</a>
+          <div class="dropdown-content">
+            <a href="/LCA">LCA</a>
+            <a href="/MaterialScience">Material Science</a>
+          </div>
+        </div>
+        <a href="/Talks">Talks</a>
+        <a href="/Leadership">Leadership</a>
+        <a href="/CV">CV</a>
+        <a href="/Contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main role="main">
+    <div class="hero">
+      <a class="back" href="/">← Home</a>
+      <h1>Material Science Publications</h1>
+    </div>
+
+    <p class="intro">
+      Key materials science publications with their environmental significance highlighted.
+    </p>
+
+    <!-- Paper 1 -->
+    <article class="paper-row" id="ms1">
+      <img src="ms1.jpeg" alt="Material Science image 1">
+      <div>
+        <h2>Tuning Reactive Species Production of Graphitic Carbon Nitride via Oxygen Doping</h2>
+        <div class="authors"><em><span class="me">Yash Shah</span> and Leanne M. Gilbertson</em></div>
+        <a class="doi" href="https://pubs.acs.org/doi/abs/10.1021/acssuschemeng.5c01792" target="_blank" rel="noopener">DOI: 10.1021/acssuschemeng.5c01792</a>
+        <div class="value">
+          <strong>What is the environmental significance?</strong>
+          <p>Oxygen doping of graphitic carbon nitride enhances visible-light photocatalysis efficiency while maintaining sustainability. This work demonstrates how atomic-level design affects reactivity and resource efficiency, enabling pollutant degradation with reduced energy inputs and offering a low-impact approach for photocatalytic material optimization.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Paper 2 -->
+    <article class="paper-row" id="ms2">
+      <img src="ms2.png" alt="Material Science image 2">
+      <div>
+        <h2>Peltophorum pterocarpum Leaf Extract Mediated Green Synthesis of Novel Iron Oxide Particles for Application in Photocatalytic and Catalytic Removal of Organic Pollutants</h2>
+        <div class="authors"><em><span class="me">Yash Shah</span>, Manisha Maharana, and Sujit Sen</em></div>
+        <a class="doi" href="https://link.springer.com/article/10.1007/s13399-021-02189-z" target="_blank" rel="noopener">DOI: 10.1007/s13399-021-02189-z</a>
+        <div class="value">
+          <strong>What is the environmental significance?</strong>
+          <p>Using Peltophorum pterocarpum leaf extract as a reducing agent replaces toxic chemicals typically used in nanoparticle synthesis. The resulting iron oxide materials effectively remove organic pollutants, advancing sustainable, low-toxicity routes for nanomaterial production and wastewater treatment applications.</p>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <footer>
+    <div style="max-width:var(--max-width);margin:24px auto 60px;padding:0 20px;color:var(--muted);font-size:14px;">
+      © <span id="year"></span> <strong>Yash Shah</strong>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.querySelector('.brand').addEventListener('click',()=>window.location.href='/');
+  </script>
+</body>
+</html>
 
