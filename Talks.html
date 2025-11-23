@@ -50,22 +50,21 @@
     main{max-width:var(--max-width);margin:40px auto;padding:0 20px 80px;box-sizing:border-box;}
     h1{font-size:26px;margin-bottom:30px;text-align:left;}
 
-    /* Talks grid styling */
     .talks-grid{
       display:flex;
       justify-content:space-between;
       align-items:flex-start;
       gap:12px;
-      flex-wrap:nowrap;  /* keeps all in one line */
-      overflow-x:auto;   /* allows horizontal scroll on smaller screens */
+      flex-wrap:nowrap; /* one line */
     }
 
     .talk{
-      flex:0 0 auto;
+      flex:1;
       text-align:center;
     }
+
     .talk img{
-      height:220px; /* uniform height */
+      height:180px; /* smaller to fit in one row */
       width:auto;
       object-fit:contain;
       border:none;
@@ -73,11 +72,17 @@
       display:block;
       margin:0 auto;
     }
+
     .talk p{
       font-style:italic;
       margin-top:8px;
       color:var(--duke-navy);
       font-size:15px;
+    }
+
+    @media(max-width:900px){
+      .talks-grid{flex-direction:column;align-items:center;}
+      .talk img{width:100%;height:auto;max-width:300px;}
     }
 
     footer{max-width:var(--max-width);margin:40px auto;padding:0 20px 40px;color:var(--muted);font-size:14px;text-align:left;}
