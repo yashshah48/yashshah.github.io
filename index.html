@@ -46,23 +46,21 @@
 
     /* Desktop nav */
     nav.nav{ display:flex; gap:18px; align-items:center; }
-    nav a{ color:var(--muted); text-decoration:none; font-weight:600; font-size:14px; white-space:nowrap; }
-    nav a:hover{ color:var(--text); }
+    nav a{ color:var(--muted); text-decoration:none; font-weight:600; font-size:14px; white-space:nowrap; transition:color 0.2s ease; }
+    nav a:hover,
+    nav a:focus { color:var(--duke-navy); }
 
-    /* Dropdown base */
+    /* Dropdown styling */
     .dropdown{
       position:relative;
       display:inline-block;
-      /* ensure there's no accidental gap between trigger and menu */
       padding-bottom:2px;
     }
     .dropdown > a { cursor:pointer; }
-
-    /* Submenu */
     .dropdown-content{
       display:none;
       position:absolute;
-      top:100%;                 /* flush to bottom of the trigger to avoid gaps */
+      top:100%;
       left:0;
       background:#fff;
       min-width:160px;
@@ -70,26 +68,19 @@
       border-radius:6px;
       box-shadow:0 6px 18px rgba(0,0,0,0.08);
       z-index:40;
-      /* avoid accidental flicker: allow pointer to pass over small edges */
-      transform-origin: top left;
     }
-
-    /* show on :hover or when .open class applied by JS */
     .dropdown:hover .dropdown-content,
-    .dropdown.open .dropdown-content {
-      display:block;
-    }
-
-    /* submenu link styling - change color on hover to Duke navy */
+    .dropdown.open .dropdown-content{ display:block; }
     .dropdown-content a{
       display:block;
       padding:10px 12px;
       color:var(--muted);
       text-decoration:none;
       font-weight:500;
+      transition:color 0.2s ease, background 0.2s ease;
     }
     .dropdown-content a:hover,
-    .dropdown-content a:focus {
+    .dropdown-content a:focus{
       color:var(--duke-navy);
       background:#fafafa;
       outline:none;
@@ -132,24 +123,31 @@
       padding:10px;
     }
     .mobile-panel a{
-      display:block; padding:10px 12px; color:var(--muted); text-decoration:none; font-weight:600; border-bottom:1px solid #f2f2f2;
+      display:block;
+      padding:10px 12px;
+      color:var(--muted);
+      text-decoration:none;
+      font-weight:600;
+      border-bottom:1px solid #f2f2f2;
+      transition:color 0.2s ease;
     }
+    .mobile-panel a:hover,
+    .mobile-panel a:focus { color:var(--duke-navy); }
     .mobile-panel a:last-child{ border-bottom:0; }
-    .mobile-submenu { display:none; padding-left:12px; }
+    .mobile-submenu{ display:none; padding-left:12px; }
     .mobile-submenu a { font-weight:500; padding:8px 12px; display:block; color:var(--muted); }
 
-    /* Main content grid */
+    /* Main grid layout */
     main{
       width:100%;
       max-width:var(--max-width);
       padding:36px 20px 40px;
       box-sizing:border-box;
     }
-
     .grid{
       display:grid;
-      grid-template-columns: minmax(var(--photo-w), var(--photo-w)) 1fr;
-      column-gap: var(--gap);
+      grid-template-columns:minmax(var(--photo-w), var(--photo-w)) 1fr;
+      column-gap:var(--gap);
       align-items:start;
       row-gap:30px;
     }
@@ -161,7 +159,7 @@
       border-radius:8px;
       overflow:hidden;
       align-self:start;
-      transform: translateX(-8px);
+      transform:translateX(-8px);
     }
     .photo img{ width:100%; height:auto; display:block; border:2px solid #f0f0f0; }
 
@@ -190,7 +188,7 @@
       .topbar-inner{ flex-wrap:wrap; align-items:center; }
       nav.nav{ display:none; }
       .burger-wrap{ display:flex; }
-      .grid{ grid-template-columns: 1fr; row-gap:18px; }
+      .grid{ grid-template-columns:1fr; row-gap:18px; }
       .photo{ width:48vw; max-width:320px; transform:none; margin:0 auto; }
       .about{ grid-column:1/2; padding-left:0; text-align:justify; margin-top:6px; }
       .toolkit{ grid-column:1/2; margin-top:6px; text-align:center; }
@@ -216,11 +214,10 @@
         <div class="dropdown" data-dropdown>
           <a aria-haspopup="true" aria-expanded="false">Projects ▾</a>
           <div class="dropdown-content" role="menu" aria-label="Projects submenu">
-            <a href="#" role="menuitem">LCA</a>
-            <a href="#" role="menuitem">Material Science</a>
+            <a href="#">LCA</a>
+            <a href="#">Material Science</a>
           </div>
         </div>
-
         <a href="#">Publications</a>
         <a href="#">Talks</a>
         <a href="#">Leadership</a>
@@ -229,7 +226,7 @@
       </nav>
     </div>
 
-    <!-- centered burger for mobile -->
+    <!-- Centered burger for mobile -->
     <div class="burger-wrap">
       <button class="burger" id="burger" aria-expanded="false" aria-controls="mobilePanel" aria-label="Open menu">☰ <span>Menu</span></button>
     </div>
@@ -272,16 +269,15 @@
   </main>
 
   <script>
-    // Keep dropdown open reliably (handle small cursor gaps), and support click toggle
+    // Dropdown improved hover + click toggle behavior
     (function(){
-      const DROPD_DELAY = 200; // ms
+      const DROPD_DELAY = 200;
       const dropdowns = document.querySelectorAll('[data-dropdown]');
       dropdowns.forEach(drop => {
-        let hideTimer = null;
+        let hideTimer;
         const trigger = drop.querySelector('a');
         const menu = drop.querySelector('.dropdown-content');
 
-        // show & hide helpers
         function show() {
           clearTimeout(hideTimer);
           drop.classList.add('open');
@@ -292,91 +288,58 @@
           trigger.setAttribute('aria-expanded','false');
         }
 
-        // mouse interactions with small delay to prevent flicker
         drop.addEventListener('mouseenter', show);
-        drop.addEventListener('mouseleave', () => {
-          hideTimer = setTimeout(hide, DROPD_DELAY);
-        });
-
-        // also keep open while hovering menu itself
+        drop.addEventListener('mouseleave', () => hideTimer = setTimeout(hide, DROPD_DELAY));
         if(menu){
           menu.addEventListener('mouseenter', show);
-          menu.addEventListener('mouseleave', () => {
-            hideTimer = setTimeout(hide, DROPD_DELAY);
-          });
+          menu.addEventListener('mouseleave', () => hideTimer = setTimeout(hide, DROPD_DELAY));
         }
-
-        // click toggles (good for accessibility + laptop trackpads)
         trigger.addEventListener('click', (e) => {
           e.preventDefault();
-          if(drop.classList.contains('open')){
-            hide();
-          } else {
-            show();
-          }
+          drop.classList.toggle('open');
+          trigger.setAttribute('aria-expanded', drop.classList.contains('open'));
         });
-
-        // keyboard accessibility: open on focus, close on blur
-        trigger.addEventListener('focus', show);
-        trigger.addEventListener('blur', () => {
-          hideTimer = setTimeout(hide, DROPD_DELAY);
-        });
-        if(menu){
-          // keep open while tabbing inside
-          menu.addEventListener('focusin', show);
-          menu.addEventListener('focusout', () => {
-            hideTimer = setTimeout(hide, DROPD_DELAY);
-          });
-        }
       });
 
-      // Mobile menu handling (burger & mobile panel)
+      // Mobile menu toggle
       const burger = document.getElementById('burger');
       const mobilePanel = document.getElementById('mobilePanel');
       const projToggle = document.getElementById('mobileProjectsToggle');
       const projSub = document.getElementById('projectsSub');
 
-      if(burger){
-        burger.addEventListener('click', () => {
-          const open = mobilePanel.style.display === 'block';
-          mobilePanel.style.display = open ? 'none' : 'block';
-          mobilePanel.setAttribute('aria-hidden', open ? 'true' : 'false');
-          burger.setAttribute('aria-expanded', open ? 'false' : 'true');
-        });
-      }
-      if(projToggle){
-        projToggle.addEventListener('click', (e) => {
-          e.preventDefault();
-          const open = projSub.style.display === 'block';
-          projSub.style.display = open ? 'none' : 'block';
-          projToggle.setAttribute('aria-expanded', open ? 'false' : 'true');
-        });
-      }
+      burger.addEventListener('click', () => {
+        const open = mobilePanel.style.display === 'block';
+        mobilePanel.style.display = open ? 'none' : 'block';
+        mobilePanel.setAttribute('aria-hidden', open ? 'true' : 'false');
+        burger.setAttribute('aria-expanded', open ? 'false' : 'true');
+      });
 
-      // close mobile panel if click outside
+      projToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const open = projSub.style.display === 'block';
+        projSub.style.display = open ? 'none' : 'block';
+        projToggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+      });
+
       document.addEventListener('click', (e) => {
         if (window.innerWidth > 900) return;
-        const inside = e.target.closest('.mobile-panel') || e.target.closest('.burger') || e.target.closest('.topbar-inner');
+        const inside = e.target.closest('.mobile-panel') || e.target.closest('.burger');
         if (!inside) {
           mobilePanel.style.display = 'none';
           mobilePanel.setAttribute('aria-hidden','true');
-          if(burger) burger.setAttribute('aria-expanded','false');
-          if(projSub){
-            projSub.style.display = 'none';
-            projToggle.setAttribute('aria-expanded','false');
-          }
+          burger.setAttribute('aria-expanded','false');
+          projSub.style.display = 'none';
+          projToggle.setAttribute('aria-expanded','false');
         }
       });
 
-      // ensure hidden on resize > breakpoint
       window.addEventListener('resize', () => {
         if(window.innerWidth > 900){
-          if(mobilePanel) mobilePanel.style.display = 'none';
-          if(burger) burger.setAttribute('aria-expanded','false');
-          if(projSub){
-            projSub.style.display = 'none';
-            projToggle.setAttribute('aria-expanded','false');
-          }
+          mobilePanel.style.display = 'none';
+          mobilePanel.setAttribute('aria-hidden','true');
+          burger.setAttribute('aria-expanded','false');
+          projSub.style.display = 'none';
+          projToggle.setAttribute('aria-expanded','false');
         }
       });
     })();
