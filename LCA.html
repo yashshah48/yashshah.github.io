@@ -13,6 +13,8 @@
       --max-width:1100px;
       --img-w:140px;
     }
+
+    /* Global */
     body{
       margin:0;
       font-family:"Helvetica Neue", Arial, sans-serif;
@@ -21,35 +23,76 @@
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
     }
+
+    /* Topbar (matches index.html) */
     .topbar{ width:100%; background:var(--bar-bg); border-bottom:1px solid #e6e6e6; }
     .topbar-inner{
-      max-width:var(--max-width); width:100%; margin:0 auto; padding:12px 20px; box-sizing:border-box;
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      max-width:var(--max-width);
+      width:100%;
+      margin:0 auto;
+      padding:12px 20px;
+      box-sizing:border-box;
+      display:flex;
+      align-items:flex-end; /* keeps role baseline aligned with logo bottom */
+      justify-content:space-between;
+      gap:12px;
     }
-    .brand { display:flex; align-items:center; gap:12px; cursor:pointer; }
+    .brand { display:flex; align-items:flex-end; gap:12px; cursor:pointer; }
     .logo img { height:32px; width:auto; display:block; }
-    .site-title { font-weight:700; color:var(--text); }
-    nav a { color:var(--muted); text-decoration:none; font-weight:600; margin-left:14px; }
+    .name-block{ display:flex; flex-direction:column; line-height:1.15; }
+    .name{ font-weight:700; font-size:16px; margin:0; }
+    .role{ font-size:13px; color:var(--muted); margin-top:2px; }
+
+    /* Navigation (same sizing and spacing as index.html) */
+    nav a{ color:var(--muted); text-decoration:none; font-weight:600; font-size:14px; margin-left:14px; transition:color .2s ease; }
     nav a:hover, nav a:focus { color:var(--duke-navy); }
 
+    /* Page body */
     main{ max-width:var(--max-width); margin:30px auto; padding:0 20px 80px; box-sizing:border-box; }
     .hero{ display:flex; gap:20px; align-items:center; margin-bottom:22px; }
     .hero .back { color:var(--duke-navy); text-decoration:none; font-weight:700; }
     .hero h1{ margin:0; font-size:26px; }
     .intro{ color:#444; margin-bottom:18px; line-height:1.6; }
 
-    /* Each paper is a two-column row: image at left, content at right */
-    .paper-row{ display:grid; grid-template-columns: var(--img-w) 1fr; gap:18px; align-items:start; margin-bottom:20px; padding:12px; border:1px solid #eee; border-radius:8px; background:#fff; }
-    .paper-row img{ width:var(--img-w); height:auto; display:block; border-radius:6px; object-fit:cover; }
+    /* Paper rows: image left, content right */
+    .paper-row{
+      display:grid;
+      grid-template-columns: var(--img-w) 1fr;
+      gap:18px;
+      align-items:start;
+      margin-bottom:20px;
+      padding:12px;
+      border:1px solid #eee;
+      border-radius:8px;
+      background:#fff;
+    }
+    .paper-row img{
+      width:var(--img-w);
+      height:auto;
+      display:block;
+      border-radius:6px;
+      object-fit:cover;
+    }
     .paper-row h2{ margin:0 0 8px 0; font-size:18px; }
     .paper-row .authors{ font-style:italic; color:#333; margin-bottom:8px; }
     .paper-row .doi{ display:inline-block; color:var(--muted); font-size:13px; margin-bottom:8px; text-decoration:none; }
-    .paper-row .value{ margin-top:8px; padding:12px; background:#fbfbfd; border-left:4px solid var(--duke-navy); border-radius:4px; }
+    .paper-row .doi:hover{ color:var(--duke-navy); }
+
+    .paper-row .value{
+      margin-top:8px;
+      padding:12px;
+      background:#fbfbfd;
+      border-left:4px solid var(--duke-navy);
+      border-radius:4px;
+      line-height:1.5;
+    }
 
     footer{ max-width:var(--max-width); margin:40px auto; padding:0 20px 40px; color:var(--muted); font-size:14px; text-align:left; }
+
     .me { color:var(--duke-navy); font-weight:700; font-style:italic; }
 
     @media (max-width:900px){
+      .topbar-inner{ padding:10px 14px; }
       .paper-row{ grid-template-columns: 1fr; }
       .paper-row img{ width:100%; max-height:220px; margin-bottom:12px; }
       .hero{ flex-direction:column; align-items:flex-start; gap:8px; }
@@ -61,18 +104,21 @@
 <body>
   <header class="topbar" role="banner">
     <div class="topbar-inner">
-      <div class="brand" onclick="location.href='/'">
-        <div class="logo"><img src="duke_university-logo_brandlogos.net_hahhm-512x178.png" alt="Duke logo"></div>
-        <div class="site-title">Yash Shah</div>
+      <div class="brand" id="brandHome">
+        <div class="logo"><img src="duke_university-logo_brandlogos.net_hahhm-512x178.png" alt="Duke University logo"></div>
+        <div class="name-block">
+          <div class="name">Yash Shah</div>
+          <div class="role">Ph.D. Candidate in Environmental Engineering</div>
+        </div>
       </div>
 
       <nav aria-label="Top navigation">
         <a href="/" title="Home">Home</a>
-        <a href="/MaterialScience">Material Science</a>
-        <a href="/Talks">Talks</a>
-        <a href="/Leadership">Leadership</a>
-        <a href="/CV">CV</a>
-        <a href="/Contact">Contact</a>
+        <a href="/MaterialScience" title="Material Science">Material Science</a>
+        <a href="/Talks" title="Talks">Talks</a>
+        <a href="/Leadership" title="Leadership">Leadership</a>
+        <a href="/CV" title="CV">CV</a>
+        <a href="/Contact" title="Contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -141,14 +187,19 @@
   </main>
 
   <footer>
-    <div style="max-width:var(--max-width);margin:24px auto 60px;padding:0 20px;color:var(--muted);font-size:14px;">© <span id="year"></span> <strong>Yash Shah</strong></div>
+    <div style="max-width:var(--max-width);margin:24px auto 60px;padding:0 20px;color:var(--muted);font-size:14px;">
+      © <span id="year"></span> <strong>Yash Shah</strong>
+    </div>
   </footer>
 
   <script>
     // set footer year
     document.getElementById('year').textContent = new Date().getFullYear();
-    // clicking brand goes home
-    document.querySelector('.brand').addEventListener('click', ()=> window.location.href = '/');
+
+    // clicking brand returns to home
+    document.getElementById('brandHome')?.addEventListener('click', function(){
+      window.location.href = '/';
+    });
   </script>
 </body>
 </html>
