@@ -11,7 +11,8 @@
       --muted:#666;
       --duke-navy:#0033a0;
       --max-width:1100px;
-      --img-h:180px;
+      --img-h:160px; /* uniform image height */
+      --gap:12px;
     }
 
     body{
@@ -57,37 +58,47 @@
     main{max-width:var(--max-width);margin:40px auto;padding:0 20px 80px;box-sizing:border-box;}
     h1{font-size:26px;margin-bottom:30px;text-align:left;}
 
-    /* Image grid */
-    .talks-grid{
+    /* Image row: keep all images in one line, no wrapping */
+    .talks-row {
       display:flex;
+      gap:var(--gap);
       justify-content:space-between;
-      align-items:flex-start;
-      gap:12px;
-      flex-wrap:nowrap;
+      align-items:stretch; /* important: stretch containers to same height */
+      flex-wrap:nowrap;    /* keep in one line */
+      overflow:hidden;     /* prevent scroll from overflow */
     }
-    .talk{
-      flex:1;
+
+    .talk {
+      flex: 1 1 0;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
       text-align:center;
+      min-width:0; /* prevents flex item from forcing wrap */
     }
+
+    /* Force uniform image height while preserving aspect ratio (no crop) */
     .talk img{
       height:var(--img-h);
       width:auto;
       max-width:100%;
       object-fit:contain;
-      border:none;
-      background:#fff;
       display:block;
       margin:0 auto;
+      background:transparent;
+      border:0;
     }
+
     .talk p{
       font-style:italic;
-      margin-top:8px;
+      margin-top:10px;
       color:var(--duke-navy);
       font-size:15px;
     }
 
     /* Talks list */
-    .talk-list{margin-top:30px;list-style:none;padding:0;}
+    .talk-list{margin-top:28px;list-style:none;padding:0;}
     .talk-item{
       background:#fff;
       border:1px solid #f0f0f0;
@@ -110,10 +121,14 @@
       border:1px solid rgba(0,51,160,0.08);
     }
 
+    @media(max-width:1100px){
+      /* reduce image height a bit on narrower screens to avoid wrapping */
+      :root { --img-h:140px; }
+    }
     @media(max-width:900px){
-      .talks-grid{flex-wrap:wrap;justify-content:center;}
+      .talks-row{flex-wrap:wrap;justify-content:center;}
       .talk{flex:0 0 48%;max-width:320px;}
-      .talk img{height:160px;}
+      :root { --img-h:140px; }
     }
 
     footer{max-width:var(--max-width);margin:40px auto;padding:0 20px 40px;color:var(--muted);font-size:14px;text-align:left;}
@@ -149,21 +164,22 @@
   <main>
     <h1>Conference, Industry & Academic Talks</h1>
 
-    <div class="talks-grid">
-      <div class="talk">
-        <img src="france.jpeg" alt="Talk in France">
+    <!-- one-line row of images -->
+    <div class="talks-row" role="list">
+      <div class="talk" role="listitem">
+        <img src="france.jpeg" alt="Rennes, France">
         <p>Rennes, France</p>
       </div>
-      <div class="talk">
-        <img src="punjab.jpeg" alt="Talk in Punjab">
+      <div class="talk" role="listitem">
+        <img src="punjab.jpeg" alt="Punjab, India">
         <p>Punjab, India</p>
       </div>
-      <div class="talk">
-        <img src="pittsburgh.jpeg" alt="Talk in Pittsburgh">
+      <div class="talk" role="listitem">
+        <img src="pittsburgh.jpeg" alt="Pittsburgh, United States">
         <p>Pittsburgh, United States</p>
       </div>
-      <div class="talk">
-        <img src="greece.jpeg" alt="Talk in Greece">
+      <div class="talk" role="listitem">
+        <img src="greece.jpeg" alt="Evia, Greece">
         <p>Evia, Greece</p>
       </div>
     </div>
