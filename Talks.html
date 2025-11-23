@@ -50,29 +50,34 @@
     main{max-width:var(--max-width);margin:40px auto;padding:0 20px 80px;box-sizing:border-box;}
     h1{font-size:26px;margin-bottom:30px;text-align:left;}
 
-    /* One-line image row, equal heights without cropping */
     .talks-grid{
       display:flex;
       justify-content:space-between;
       align-items:flex-start;
       gap:12px;
-      flex-wrap:nowrap; /* force single line */
+      flex-wrap:nowrap; /* one line */
+      overflow:hidden;  /* avoid horizontal scrollbar */
     }
 
     .talk{
       flex:1;
       text-align:center;
+      min-width:0; /* ensure flex items can shrink and not force wrap */
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
     }
 
-    /* uniform height, preserve aspect ratio (no cropping) */
     .talk img{
-      height:180px; /* uniform height for all images */
+      height:180px; /* smaller to fit in one row */
       width:auto;
-      object-fit:contain; /* preserves entire image */
+      object-fit:contain;
       border:none;
       background:#fff;
       display:block;
       margin:0 auto;
+      max-width:100%;
     }
 
     .talk p{
@@ -82,40 +87,24 @@
       font-size:15px;
     }
 
-    /* Talks list below images */
-    .talks-list{
-      margin-top:36px;
-      column-gap:40px;
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:14px;
-      font-size:15px;
-      line-height:1.5;
-      color:#222;
-    }
-    .talk-entry{ margin-bottom:8px; }
-    .talk-entry strong{ font-weight:700; }
-    .talk-entry em{ color:#444; }
-
-    /* Adjust for wider screens: keep list single column but narrower for readability */
-    @media(min-width:900px){
-      .talks-list{ grid-template-columns: 1fr; max-width:880px; }
+    @media(max-width:1100px){
+      /* slightly reduce image height on narrower screens so they still fit one row */
+      .talk img{height:150px;}
     }
 
     @media(max-width:900px){
-      .talks-grid{flex-direction:column;align-items:center;gap:18px;}
+      .talks-grid{flex-direction:column;align-items:center;flex-wrap:wrap;overflow:visible;}
       .talk img{width:100%;height:auto;max-width:300px;}
     }
 
     footer{max-width:var(--max-width);margin:40px auto;padding:0 20px 40px;color:var(--muted);font-size:14px;text-align:left;}
-    a:focus{outline:2px solid rgba(0,51,160,0.12);outline-offset:2px;}
   </style>
 </head>
 <body>
   <header class="topbar">
     <div class="topbar-inner">
       <div class="brand" id="brand">
-        <div class="logo"><img src="/mnt/data/duke_university-logo_brandlogos.net_hahhm-512x178.png" alt="Duke University logo"></div>
+        <div class="logo"><img src="duke_university-logo_brandlogos.net_hahhm-512x178.png" alt="Duke University logo"></div>
         <div class="name-block">
           <div class="name"><strong>Yash Shah</strong></div>
           <div class="role">Ph.D. Candidate in Environmental Engineering</div>
@@ -141,57 +130,22 @@
   <main>
     <h1>Conference, Industry & Academic Talks</h1>
 
-    <div class="talks-grid" aria-hidden="false">
+    <div class="talks-grid">
       <div class="talk">
-        <img src="/mnt/data/france.jpeg" alt="Talk in Rennes, France">
+        <img src="france.jpeg" alt="Talk in France">
         <p>Rennes, France (2025)</p>
       </div>
       <div class="talk">
-        <img src="/mnt/data/punjab.jpeg" alt="Talk in Punjab, India">
+        <img src="punjab.jpeg" alt="Talk in Punjab">
         <p>Punjab, India (2024)</p>
       </div>
       <div class="talk">
-        <img src="/mnt/data/pittsburgh.jpeg" alt="Talk in Pittsburgh, USA">
+        <img src="pittsburgh.jpeg" alt="Talk in Pittsburgh">
         <p>Pittsburgh, United States (2024)</p>
       </div>
       <div class="talk">
-        <img src="/mnt/data/greece.jpeg" alt="Talk in Evia, Greece">
+        <img src="greece.jpeg" alt="Talk in Greece">
         <p>Evia, Greece (2023)</p>
-      </div>
-    </div>
-
-    <!-- Talks entries (formatted as requested) -->
-    <div class="talks-list" aria-live="polite">
-      <div class="talk-entry">
-        <strong>Yash Shah</strong>, &amp; <strong>Gilbertson, L. M.</strong> (2025). Revealing Structure–Property–Sustainability Relationships for Predicting Design of Graphitic Carbon Nitride. <em>INFRAMES Fall Meeting 2025, Rennes, France.</em>
-      </div>
-
-      <div class="talk-entry">
-        <strong>Yash Shah</strong>, &amp; <strong>Gilbertson, L. M.</strong> (2025). Establishing Functional Property–Reactive Performance–Environmental Impact Relationships for Graphitic Carbon Nitride through Non-Metal Doping. <em>Gordon Research Conference on Environmental Nanotechnology, Newry, ME.</em>
-      </div>
-
-      <div class="talk-entry">
-        <strong>Yash Shah</strong>, &amp; <strong>Gilbertson, L. M.</strong> (2024). Doping of Carbon Nitride: Tweaking Atoms, Tuning Material Properties, and Trimming Environmental Impact. <em>Indian Chemical Engineers' Congress, Jalandhar, India.</em> Won Best Paper Presentation Award
-      </div>
-
-      <div class="talk-entry">
-        <strong>N. Hadjigeorgiou</strong>, <strong>Yash Shah</strong>, <strong>E. Opsimou</strong>, <strong>I. Ioannis</strong>, <strong>G. Adamoy</strong>, <strong>D. Kalaronis</strong>, <strong>I. Koukmenidis</strong>. (2023). Toward “zero carbon footprint” regions in Greece. <em>Interdisciplinary School for Environmental Crisis, Evia, Greece</em> (Received Travel Scholarship).
-      </div>
-
-      <div class="talk-entry">
-        <strong>Yash Shah</strong>, <strong>Rubin, A.</strong>, &amp; <strong>Gilbertson, L. M.</strong> (2024). Mitigating Critical Minerals Dependency Using Carbon Nanomaterials: Insights from Carbon Nitride. <em>SCRiMMaJE – Critical Minerals Symposium, Duke University.</em>
-      </div>
-
-      <div class="talk-entry">
-        <strong>Yash Shah</strong>, &amp; <strong>Gilbertson, L. M.</strong> (2024). Heteroatom Doping of Graphitic Carbon Nitride. <em>American Chemical Society Central Regional Meeting, Pittsburgh, PA.</em>
-      </div>
-
-      <div class="talk-entry">
-        <strong>Yash Shah</strong>, &amp; <strong>Gilbertson, L. M.</strong> (2023). Balancing Functional Properties and Environmental Impact of Graphitic Carbon Nitride. <em>Sustainable Nanotechnology Organization Conference, Los Angeles, CA.</em>
-      </div>
-
-      <div class="talk-entry">
-        <strong>Yash Shah</strong>, &amp; <strong>Das, T.</strong> (2018). Catalytic Oxidation of Cyclohexane in Vapor Phase Using Co–Fe/Alumina Catalysts at Low Temperature. <em>Spark Summer Poster Symposium, Indian Institute of Technology, Roorkee, India.</em> Won Best Presentation Award
       </div>
     </div>
   </main>
