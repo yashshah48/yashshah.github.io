@@ -11,10 +11,9 @@
       --muted:#666;
       --duke-navy:#0033a0;
       --max-width:1100px;
-      --talk-img-h:160px;
+      --img-h:180px;
     }
 
-    /* --- Base --- */
     body{
       margin:0;
       font-family:"Helvetica Neue", Arial, sans-serif;
@@ -24,7 +23,6 @@
       -moz-osx-font-smoothing:grayscale;
     }
 
-    /* --- Topbar --- */
     .topbar{width:100%;background:var(--bar-bg);border-bottom:1px solid #e6e6e6;}
     .topbar-inner{
       max-width:var(--max-width);
@@ -37,117 +35,94 @@
       gap:12px;
       box-sizing:border-box;
     }
-    .brand{display:flex;align-items:flex-end;gap:12px;cursor:pointer}
-    .logo img{height:32px;width:auto;display:block}
-    .name-block{display:flex;flex-direction:column;line-height:1.15}
-    .name{font-weight:700;font-size:16px;margin:0}
-    .role{font-size:13px;color:var(--muted);margin-top:2px}
+    .brand{display:flex;align-items:flex-end;gap:12px;cursor:pointer;}
+    .logo img{height:32px;width:auto;display:block;}
+    .name-block{display:flex;flex-direction:column;line-height:1.15;}
+    .name{font-weight:700;font-size:16px;margin:0;}
+    .role{font-size:13px;color:var(--muted);margin-top:2px;}
 
-    nav.nav{display:flex;gap:18px;align-items:center}
-    nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;transition:color .15s;}
-    nav a:hover,nav a:focus{color:var(--duke-navy)}
+    nav.nav{display:flex;gap:18px;align-items:center;}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;transition:color .2s ease;}
+    nav a:hover,nav a:focus{color:var(--duke-navy);}
 
-    .dropdown{position:relative;display:inline-block;padding-bottom:2px}
-    .dropdown-content{display:none;position:absolute;top:100%;left:0;background:#fff;min-width:160px;border:1px solid #ddd;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.08);z-index:40}
-    .dropdown:hover .dropdown-content,.dropdown.open .dropdown-content{display:block}
-    .dropdown-content a{display:block;padding:10px 12px;color:var(--muted);text-decoration:none;font-weight:500}
-    .dropdown-content a:hover{color:var(--duke-navy);background:#fafafa}
+    .dropdown{position:relative;display:inline-block;padding-bottom:2px;}
+    .dropdown-content{
+      display:none;position:absolute;top:100%;left:0;background:#fff;min-width:160px;border:1px solid #ddd;
+      border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.08);z-index:40;
+    }
+    .dropdown:hover .dropdown-content,.dropdown.open .dropdown-content{display:block;}
+    .dropdown-content a{display:block;padding:10px 12px;color:var(--muted);text-decoration:none;font-weight:500;}
+    .dropdown-content a:hover{color:var(--duke-navy);background:#fafafa;}
 
-    /* --- Main content --- */
-    main{max-width:var(--max-width);margin:36px auto;padding:0 20px 80px;box-sizing:border-box}
-    h1{font-size:26px;margin:0 0 20px 0}
+    main{max-width:var(--max-width);margin:40px auto;padding:0 20px 80px;box-sizing:border-box;}
+    h1{font-size:26px;margin-bottom:30px;text-align:left;}
 
-    /* Talks images single-line layout (no scroll) */
+    /* Image grid */
     .talks-grid{
       display:flex;
-      gap:16px;
-      align-items:flex-start;
       justify-content:space-between;
-      flex-wrap:nowrap; /* keep one line */
-      margin-bottom:28px;
+      align-items:flex-start;
+      gap:12px;
+      flex-wrap:nowrap;
     }
     .talk{
-      flex:1 1 0;       /* allow shrinking so all fit on one line */
-      min-width:0;      /* important to allow flex children to shrink */
+      flex:1;
       text-align:center;
     }
     .talk img{
-      height:var(--talk-img-h);
+      height:var(--img-h);
       width:auto;
       max-width:100%;
       object-fit:contain;
+      border:none;
+      background:#fff;
       display:block;
       margin:0 auto;
-      background:transparent;
-      border:none;
     }
     .talk p{
       font-style:italic;
-      margin-top:10px;
+      margin-top:8px;
       color:var(--duke-navy);
       font-size:15px;
     }
 
-    /* Talks list below images */
-    .talk-list{
-      margin-top:10px;
-      padding:0;
-      list-style:none;
-    }
+    /* Talks list */
+    .talk-list{margin-top:30px;list-style:none;padding:0;}
     .talk-item{
-      padding:14px 14px;
-      border-radius:8px;
       background:#fff;
       border:1px solid #f0f0f0;
+      border-radius:8px;
+      padding:14px;
       margin-bottom:12px;
-      display:block;
-      box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+      box-shadow:0 1px 0 rgba(0,0,0,0.03);
     }
-    .talk-item .citation{
-      margin:0 0 6px 0;
-      line-height:1.35;
-      color:var(--text);
-      font-size:15px;
-    }
-    .talk-item .citation strong{font-weight:700}
-    .talk-item .citation .me{
-      color:var(--duke-navy);
-      font-style:italic;
-      font-weight:700;
-    }
-    .talk-item .venue{
-      margin:0;
-      color:var(--muted);
-      font-style:italic;
-      font-size:14px;
-    }
+    .talk-item .citation{margin:0 0 6px;font-size:15px;line-height:1.4;color:var(--text);}
+    .talk-item .citation .me{color:var(--duke-navy);font-weight:700;font-style:italic;}
+    .talk-item .venue{margin:0;font-style:italic;color:var(--muted);font-size:14px;}
     .award{
       display:inline-block;
       margin-left:8px;
       font-size:13px;
-      color:#5a5a5a;
-      font-weight:600;
-      background:#f6f9ff;
+      color:#555;
+      background:#f5f8ff;
       padding:4px 8px;
       border-radius:6px;
-      border:1px solid rgba(0,51,160,0.06);
+      border:1px solid rgba(0,51,160,0.08);
     }
 
-    @media (max-width:900px){
-      .talks-grid{flex-wrap:wrap;justify-content:center}
-      .talk{flex:0 0 48%;max-width:320px}
-      .talk img{height:160px}
-      .talk p{font-size:14px}
+    @media(max-width:900px){
+      .talks-grid{flex-wrap:wrap;justify-content:center;}
+      .talk{flex:0 0 48%;max-width:320px;}
+      .talk img{height:160px;}
     }
 
-    footer{max-width:var(--max-width);margin:40px auto;padding:0 20px 40px;color:var(--muted);font-size:14px;text-align:left}
-    a:focus,button:focus{outline:2px solid rgba(0,51,160,0.12);outline-offset:2px}
+    footer{max-width:var(--max-width);margin:40px auto;padding:0 20px 40px;color:var(--muted);font-size:14px;text-align:left;}
   </style>
 </head>
 <body>
-  <header class="topbar" role="banner">
+  <header class="topbar">
     <div class="topbar-inner">
-      <div class="brand" id="brand" title="Home (click)">
+      <div class="brand" id="brand">
         <div class="logo"><img src="duke_university-logo_brandlogos.net_hahhm-512x178.png" alt="Duke University logo"></div>
         <div class="name-block">
           <div class="name"><strong>Yash Shah</strong></div>
@@ -155,15 +130,15 @@
         </div>
       </div>
 
-      <nav class="nav" aria-label="Main navigation">
+      <nav class="nav">
         <div class="dropdown" data-dropdown>
           <a>Publications ▾</a>
-          <div class="dropdown-content" role="menu" aria-label="Publications submenu">
+          <div class="dropdown-content">
             <a href="/LCA">LCA</a>
             <a href="/MaterialScience">Material Science</a>
           </div>
         </div>
-        <a href="/Talks" aria-current="page">Talks</a>
+        <a href="/Talks">Talks</a>
         <a href="/Leadership">Leadership</a>
         <a href="/CV">CV</a>
         <a href="/Contact">Contact</a>
@@ -171,66 +146,61 @@
     </div>
   </header>
 
-  <main role="main">
+  <main>
     <h1>Conference, Industry & Academic Talks</h1>
 
-    <div class="talks-grid" aria-hidden="false">
+    <div class="talks-grid">
       <div class="talk">
-        <img src="france.jpeg" alt="Rennes, France">
+        <img src="france.jpeg" alt="Talk in France">
         <p>Rennes, France</p>
       </div>
-
       <div class="talk">
-        <img src="punjab.jpeg" alt="Punjab, India">
+        <img src="punjab.jpeg" alt="Talk in Punjab">
         <p>Punjab, India</p>
       </div>
-
       <div class="talk">
-        <img src="pittsburgh.jpeg" alt="Pittsburgh, United States">
+        <img src="pittsburgh.jpeg" alt="Talk in Pittsburgh">
         <p>Pittsburgh, United States</p>
       </div>
-
       <div class="talk">
-        <img src="greece.jpeg" alt="Evia, Greece">
+        <img src="greece.jpeg" alt="Talk in Greece">
         <p>Evia, Greece</p>
       </div>
     </div>
 
-    <!-- Talks list (formatted for strong impression) -->
-    <ol class="talk-list" aria-label="Talk publications">
+    <!-- Talks list -->
+    <ol class="talk-list">
       <li class="talk-item">
-        <p class="citation"><strong><span class="me">Shah, Y.</span></strong>, &amp; Gilbertson, L. M. (2025). <strong>Revealing Structure–Property–Sustainability Relationships for Predicting Design of Graphitic Carbon Nitride.</strong></p>
-        <p class="venue">INFRAMES Fall Meeting 2025, <em>Rennes, France</em></p>
+        <p class="citation"><span class="me">Yash Shah</span>, &amp; L. M. Gilbertson (2025). <strong>Revealing Structure–Property–Sustainability Relationships for Predicting Design of Graphitic Carbon Nitride.</strong></p>
+        <p class="venue"><em>INFRAMES Fall Meeting 2025, Rennes, France</em></p>
       </li>
-
       <li class="talk-item">
-        <p class="citation"><strong><span class="me">Shah, Y.</span></strong>, &amp; Gilbertson, L. M. (2025). <strong>Establishing Functional Property–Reactive Performance–Environmental Impact Relationships for Graphitic Carbon Nitride through Non-Metal Doping.</strong></p>
-        <p class="venue">Gordon Research Conference on Environmental Nanotechnology, <em>Newry, ME</em></p>
+        <p class="citation"><span class="me">Yash Shah</span>, &amp; L. M. Gilbertson (2025). <strong>Establishing Functional Property–Reactive Performance–Environmental Impact Relationships for Graphitic Carbon Nitride through Non-Metal Doping.</strong></p>
+        <p class="venue"><em>Gordon Research Conference on Environmental Nanotechnology, Newry, ME</em></p>
       </li>
-
       <li class="talk-item">
-        <p class="citation"><strong><span class="me">Shah, Y.</span></strong>, &amp; Gilbertson, L. M. (2024). <strong>Doping of Carbon Nitride: Tweaking Atoms, Tuning Material Properties, and Trimming Environmental Impact.</strong></p>
-        <p class="venue">Indian Chemical Engineers' Congress, <em>Jalandhar, India</em> <span class="award">Won Best Paper Presentation Award</span></p>
+        <p class="citation"><span class="me">Yash Shah</span>, &amp; L. M. Gilbertson (2024). <strong>Doping of Carbon Nitride: Tweaking Atoms, Tuning Material Properties, and Trimming Environmental Impact.</strong></p>
+        <p class="venue"><em>Indian Chemical Engineers’ Congress, Jalandhar, India</em> <span class="award">Best Paper Presentation Award</span></p>
       </li>
-
       <li class="talk-item">
-        <p class="citation"><strong><span class="me">Shah, Y.</span></strong>, Rubin, A., &amp; Gilbertson, L. M. (2024). <strong>Mitigating Critical Minerals Dependency Using Carbon Nanomaterials: Insights from Carbon Nitride.</strong></p>
-        <p class="venue">SCRiMMaJE – Critical Minerals Symposium, <em>Duke University</em></p>
+        <p class="citation">N. Hadjigeorgiou, <span class="me">Yash Shah</span>, E. Opsimou, I. Ioannis, G. Adamoy, D. Kalaronis, &amp; I. Koukmenidis (2023). <strong>Toward “Zero Carbon Footprint” Regions in Greece.</strong></p>
+        <p class="venue"><em>Interdisciplinary School for Environmental Crisis, Evia, Greece</em> <span class="award">Received Travel Scholarship</span></p>
       </li>
-
       <li class="talk-item">
-        <p class="citation"><strong><span class="me">Shah, Y.</span></strong>, &amp; Gilbertson, L. M. (2024). <strong>Heteroatom Doping of Graphitic Carbon Nitride.</strong></p>
-        <p class="venue">American Chemical Society Central Regional Meeting, <em>Pittsburgh, PA</em></p>
+        <p class="citation"><span class="me">Yash Shah</span>, A. Rubin, &amp; L. M. Gilbertson (2024). <strong>Mitigating Critical Minerals Dependency Using Carbon Nanomaterials: Insights from Carbon Nitride.</strong></p>
+        <p class="venue"><em>SCRiMMaJE – Critical Minerals Symposium, Duke University</em></p>
       </li>
-
       <li class="talk-item">
-        <p class="citation"><strong><span class="me">Shah, Y.</span></strong>, &amp; Gilbertson, L. M. (2023). <strong>Balancing Functional Properties and Environmental Impact of Graphitic Carbon Nitride.</strong></p>
-        <p class="venue">Sustainable Nanotechnology Organization Conference, <em>Los Angeles, CA</em></p>
+        <p class="citation"><span class="me">Yash Shah</span>, &amp; L. M. Gilbertson (2024). <strong>Heteroatom Doping of Graphitic Carbon Nitride.</strong></p>
+        <p class="venue"><em>American Chemical Society Central Regional Meeting, Pittsburgh, PA</em></p>
       </li>
-
       <li class="talk-item">
-        <p class="citation"><strong><span class="me">Shah, Y.</span></strong>, &amp; Das, T. (2018). <strong>Catalytic Oxidation of Cyclohexane in Vapor Phase Using Co–Fe/Alumina Catalysts at Low Temperature.</strong></p>
-        <p class="venue">Spark Summer Poster Symposium, <em>Indian Institute of Technology, Roorkee, India</em> <span class="award">Won Best Presentation Award</span></p>
+        <p class="citation"><span class="me">Yash Shah</span>, &amp; L. M. Gilbertson (2023). <strong>Balancing Functional Properties and Environmental Impact of Graphitic Carbon Nitride.</strong></p>
+        <p class="venue"><em>Sustainable Nanotechnology Organization Conference, Los Angeles, CA</em></p>
+      </li>
+      <li class="talk-item">
+        <p class="citation"><span class="me">Yash Shah</span>, &amp; T. Das (2018). <strong>Catalytic Oxidation of Cyclohexane in Vapor Phase Using Co–Fe/Alumina Catalysts at Low Temperature.</strong></p>
+        <p class="venue"><em>Spark Summer Poster Symposium, Indian Institute of Technology, Roorkee, India</em> <span class="award">Best Presentation Award</span></p>
       </li>
     </ol>
   </main>
@@ -242,29 +212,25 @@
   </footer>
 
   <script>
-    // footer year
     document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('brand').addEventListener('click',()=>window.location.href='/');
 
-    // clicking brand returns to home
-    document.getElementById('brand').addEventListener('click', ()=> window.location.href = '/');
-
-    // dropdown hover/click behavior (consistent with other pages)
     (function(){
-      const DROPD_DELAY = 200;
-      const drop = document.querySelector('[data-dropdown]');
-      if(!drop) return;
+      const DROPD_DELAY=200;
+      const drop=document.querySelector('[data-dropdown]');
+      if(!drop)return;
       let hideTimer;
-      const trigger = drop.querySelector('a');
-      const menu = drop.querySelector('.dropdown-content');
-      function show(){ clearTimeout(hideTimer); drop.classList.add('open'); }
-      function hide(){ drop.classList.remove('open'); }
-      drop.addEventListener('mouseenter', show);
-      drop.addEventListener('mouseleave', ()=> hideTimer = setTimeout(hide, DROPD_DELAY));
+      const trigger=drop.querySelector('a');
+      const menu=drop.querySelector('.dropdown-content');
+      function show(){clearTimeout(hideTimer);drop.classList.add('open');}
+      function hide(){drop.classList.remove('open');}
+      drop.addEventListener('mouseenter',show);
+      drop.addEventListener('mouseleave',()=>hideTimer=setTimeout(hide,DROPD_DELAY));
       if(menu){
-        menu.addEventListener('mouseenter', show);
-        menu.addEventListener('mouseleave', ()=> hideTimer = setTimeout(hide, DROPD_DELAY));
+        menu.addEventListener('mouseenter',show);
+        menu.addEventListener('mouseleave',()=>hideTimer=setTimeout(hide,DROPD_DELAY));
       }
-      trigger.addEventListener('click', (e)=> { e.preventDefault(); drop.classList.toggle('open'); });
+      trigger.addEventListener('click',e=>{e.preventDefault();drop.classList.toggle('open');});
     })();
   </script>
 </body>
