@@ -49,6 +49,7 @@
 
     main{max-width:var(--max-width);margin:40px auto;padding:0 20px 80px;box-sizing:border-box;}
     h1{font-size:26px;margin-bottom:30px;}
+
     .talks-grid{
       display:flex;
       justify-content:space-between;
@@ -62,23 +63,21 @@
     .talk img{
       width:100%;
       height:auto;
-      border-radius:8px;
-      border:2px solid #eee;
-      max-width:200px;
-      aspect-ratio:1/1.25;
-      object-fit:cover;
+      border:none;
+      background:#fff;
+      max-width:240px;
     }
     .talk p{
       font-style:italic;
       margin-top:8px;
-      color:#444;
+      color:var(--duke-navy);
       font-size:15px;
     }
 
     @media(max-width:900px){
       .talks-grid{flex-direction:column;align-items:center;}
-      .talk{flex:1 1 100%;max-width:250px;}
-      .talk img{width:100%;max-width:250px;}
+      .talk{flex:1 1 100%;max-width:300px;}
+      .talk img{width:100%;max-width:100%;}
     }
 
     footer{max-width:var(--max-width);margin:40px auto;padding:0 20px 40px;color:var(--muted);font-size:14px;text-align:left;}
@@ -144,7 +143,7 @@
     document.getElementById('year').textContent = new Date().getFullYear();
     document.getElementById('brand').addEventListener('click',()=>window.location.href='/');
 
-    // dropdown hover/click behavior same as other pages
+    // dropdown hover/click behavior
     (function(){
       const DROPD_DELAY=200;
       const drop=document.querySelector('[data-dropdown]');
