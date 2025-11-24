@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact - Yash Shah</title>
+  <style>
+    :root{
+      --bar-bg:#f6f6f6;
+      --text:#222;
+      --muted:#444;
+      --duke-navy:#0033a0;
+      --max-width:1100px;
+    }
+
+    body{
+      margin:0;
+      font-family:"Helvetica Neue", Arial, sans-serif;
+      color:var(--text);
+      background:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .topbar{width:100%;background:var(--bar-bg);border-bottom:1px solid #e6e6e6;}
+    .topbar-inner{
+      max-width:var(--max-width);width:100%;margin:0 auto;padding:12px 20px;
+      display:flex;align-items:flex-end;justify-content:space-between;gap:12px;box-sizing:border-box;
+    }
+    .brand{display:flex;align-items:flex-end;gap:12px;cursor:pointer;}
+    .logo img{height:32px;width:auto;display:block;}
+    .name-block{display:flex;flex-direction:column;line-height:1.15;}
+    .name{font-weight:700;font-size:16px;margin:0;}
+    .role{font-size:13px;color:var(--muted);margin-top:2px;}
+
+    nav.nav{display:flex;gap:18px;align-items:center;}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;transition:color .2s ease;}
+    nav a:hover,nav a:focus{color:var(--duke-navy);}
+
+    .dropdown{position:relative;display:inline-block;padding-bottom:2px;}
+    .dropdown> a{cursor:pointer;}
+    .dropdown-content{
+      display:none;position:absolute;top:100%;left:0;background:#fff;min-width:160px;border:1px solid #ddd;
+      border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.08);z-index:40;
+    }
+    .dropdown:hover .dropdown-content,.dropdown.open .dropdown-content{display:block;}
+    .dropdown-content a{display:block;padding:10px 12px;color:var(--muted);text-decoration:none;font-weight:500;}
+    .dropdown-content a:hover{color:var(--duke-navy);background:#fafafa;}
+
+    main{
+      max-width:var(--max-width);
+      margin:60px auto;
+      padding:0 20px 80px;
+      text-align:center;
+      box-sizing:border-box;
+    }
+    h1{font-size:28px;color:var(--text);margin-bottom:20px;}
+    p{
+      font-size:18px;
+      color:var(--duke-navy);
+      line-height:1.6;
+    }
+
+    footer{
+      max-width:var(--max-width);
+      margin:40px auto;
+      padding:0 20px 40px;
+      color:var(--muted);
+      font-size:14px;
+      text-align:left;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand" id="brand">
+        <div class="logo"><img src="duke_university-logo_brandlogos.net_hahhm-512x178.png" alt="Duke University logo"></div>
+        <div class="name-block">
+          <div class="name"><strong>Yash Shah</strong></div>
+          <div class="role">Ph.D. Candidate in Environmental Engineering</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <div class="dropdown" data-dropdown>
+          <a>Publications ▾</a>
+          <div class="dropdown-content">
+            <a href="/LCA">LCA</a>
+            <a href="/MaterialScience">Material Science</a>
+          </div>
+        </div>
+        <a href="/Talks">Talks</a>
+        <a href="/Leadership">Leadership</a>
+        <a href="/CV_Shah_Research.pdf" target="_blank" rel="noopener">CV</a>
+        <a href="/Contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>Contact</h1>
+    <p>You can reach me at:<br><br>
+    <strong>shah[dot]yash[at]duke[dot]edu</strong></p>
+  </main>
+
+  <footer>
+    <div style="max-width:var(--max-width);margin:24px auto 60px;padding:0 20px;color:var(--muted);font-size:14px;">
+      © <span id="year"></span> <strong>Yash Shah</strong>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('brand').addEventListener('click',()=>window.location.href='/');
+
+    (function(){
+      const DROPD_DELAY=200;
+      const drop=document.querySelector('[data-dropdown]');
+      if(!drop)return;
+      let hideTimer;
+      const trigger=drop.querySelector('a');
+      const menu=drop.querySelector('.dropdown-content');
+      function show(){clearTimeout(hideTimer);drop.classList.add('open');}
+      function hide(){drop.classList.remove('open');}
+      drop.addEventListener('mouseenter',show);
+      drop.addEventListener('mouseleave',()=>hideTimer=setTimeout(hide,DROPD_DELAY));
+      if(menu){
+        menu.addEventListener('mouseenter',show);
+        menu.addEventListener('mouseleave',()=>hideTimer=setTimeout(hide,DROPD_DELAY));
+      }
+      trigger.addEventListener('click',e=>{e.preventDefault();drop.classList.toggle('open');});
+    })();
+  </script>
+</body>
+</html>
