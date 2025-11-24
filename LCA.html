@@ -211,6 +211,21 @@
         </div>
       </div>
     </article>
+
+    <!-- NEW: BASF industrial collaboration entry -->
+    <article class="paper-row">
+      <img src="basf.jpeg" alt="BASF collaboration image">
+      <div>
+        <h2>Assessing environmental impact of proprietary coatings for agricultural applications</h2>
+        <div class="authors"><em>BASF Corporation Industrial Collaboration</em></div>
+        <div class="doi" aria-hidden="true"><em>In preparation</em></div>
+        <div class="value">
+          <strong>What value is LCA adding?</strong>
+          <p>Leading a novel LCA method and characterization factor development to assess the end-of-use cases for 3 different types of proprietary agricultural coatings, compliant with European Union’s environmental regulations.</p>
+        </div>
+      </div>
+    </article>
+
   </main>
 
   <footer>
@@ -266,39 +281,47 @@
       const projectsToggle = document.getElementById('mobileProjectsToggle');
       const projectsSub = document.getElementById('projectsSub');
 
-      burger.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const open = mobilePanel.style.display === 'block';
-        mobilePanel.style.display = open ? 'none' : 'block';
-        mobilePanel.setAttribute('aria-hidden', open ? 'true' : 'false');
-        burger.setAttribute('aria-expanded', !open);
-      });
+      if (burger) {
+        burger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const open = mobilePanel.style.display === 'block';
+          mobilePanel.style.display = open ? 'none' : 'block';
+          mobilePanel.setAttribute('aria-hidden', open ? 'true' : 'false');
+          burger.setAttribute('aria-expanded', !open);
+        });
+      }
 
-      projectsToggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        const open = projectsSub.style.display === 'block';
-        projectsSub.style.display = open ? 'none' : 'block';
-      });
+      if (projectsToggle) {
+        projectsToggle.addEventListener('click', (e) => {
+          e.preventDefault();
+          const open = projectsSub.style.display === 'block';
+          projectsSub.style.display = open ? 'none' : 'block';
+        });
+      }
 
       // close mobile panel when clicking outside
       document.addEventListener('click', (e) => {
         if (window.innerWidth > 900) return;
         const inside = e.target.closest('.mobile-panel') || e.target.closest('.burger');
         if (!inside) {
-          mobilePanel.style.display = 'none';
-          mobilePanel.setAttribute('aria-hidden','true');
-          burger.setAttribute('aria-expanded','false');
-          projectsSub.style.display = 'none';
+          if (mobilePanel) {
+            mobilePanel.style.display = 'none';
+            mobilePanel.setAttribute('aria-hidden','true');
+          }
+          if (burger) burger.setAttribute('aria-expanded','false');
+          if (projectsSub) projectsSub.style.display = 'none';
         }
       });
 
       // reset on resize
       window.addEventListener('resize', () => {
         if (window.innerWidth > 900) {
-          mobilePanel.style.display = 'none';
-          mobilePanel.setAttribute('aria-hidden','true');
-          burger.setAttribute('aria-expanded','false');
-          projectsSub.style.display = 'none';
+          if (mobilePanel) {
+            mobilePanel.style.display = 'none';
+            mobilePanel.setAttribute('aria-hidden','true');
+          }
+          if (burger) burger.setAttribute('aria-expanded','false');
+          if (projectsSub) projectsSub.style.display = 'none';
         }
       });
     })();
