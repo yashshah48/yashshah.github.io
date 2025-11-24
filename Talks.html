@@ -51,9 +51,17 @@
       display:none;position:absolute;top:100%;left:0;background:#fff;min-width:160px;border:1px solid #ddd;
       border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.08);z-index:40;
     }
-    .dropdown:hover .dropdown-content,.dropdown.open .dropdown-content{display:block;}
     .dropdown-content a{display:block;padding:10px 12px;color:var(--muted);text-decoration:none;font-weight:500;}
     .dropdown-content a:hover{color:var(--duke-navy);background:#fafafa;}
+
+    /* Mobile controls */
+    .burger-wrap{display:none;width:100%;justify-content:center;margin-top:8px;}
+    .burger{background:transparent;border:0;font-size:18px;cursor:pointer;padding:6px 10px;color:var(--muted);display:flex;align-items:center;gap:6px;font-weight:600;}
+    .mobile-panel{display:none;position:fixed;top:62px;right:12px;left:12px;background:#fff;border:1px solid #e6e6e6;border-radius:8px;box-shadow:0 12px 30px rgba(0,0,0,0.12);z-index:200;max-height:70vh;overflow:auto;padding:8px;}
+    .mobile-panel a{display:block;padding:10px 12px;color:var(--muted);text-decoration:none;font-weight:600;border-bottom:1px solid #f2f2f2;}
+    .mobile-panel a:hover{color:var(--duke-navy);}
+    .mobile-submenu{display:none;padding-left:12px;background:#fafafa;}
+    .mobile-submenu a{font-weight:500;padding:8px 12px;display:block;color:var(--muted);}
 
     main{max-width:var(--max-width);margin:40px auto;padding:0 20px 80px;box-sizing:border-box;}
     h1{font-size:26px;margin-bottom:30px;text-align:left;}
@@ -66,6 +74,7 @@
       align-items:stretch; /* important: stretch containers to same height */
       flex-wrap:nowrap;    /* keep in one line */
       overflow:hidden;     /* prevent scroll from overflow */
+      margin-bottom:24px;
     }
 
     .talk {
@@ -98,7 +107,7 @@
     }
 
     /* Talks list */
-    .talk-list{margin-top:28px;list-style:none;padding:0;}
+    .talk-list{margin-top:8px;list-style:none;padding:0;}
     .talk-item{
       background:#fff;
       border:1px solid #f0f0f0;
@@ -126,6 +135,9 @@
       :root { --img-h:140px; }
     }
     @media(max-width:900px){
+      .topbar-inner{flex-wrap:wrap;}
+      nav.nav{display:none;}
+      .burger-wrap{display:flex;}
       .talks-row{flex-wrap:wrap;justify-content:center;}
       .talk{flex:0 0 48%;max-width:320px;}
       :root { --img-h:140px; }
@@ -145,7 +157,7 @@
         </div>
       </div>
 
-      <nav class="nav">
+      <nav class="nav" aria-label="Main navigation">
         <div class="dropdown" data-dropdown>
           <a>Publications ▾</a>
           <div class="dropdown-content">
@@ -159,7 +171,26 @@
         <a href="/Contact">Contact</a>
       </nav>
     </div>
+
+    <!-- burger for mobile -->
+    <div class="burger-wrap">
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="mobilePanel">☰ <span>Menu</span></button>
+    </div>
   </header>
+
+  <!-- mobile panel -->
+  <div class="mobile-panel" id="mobilePanel" aria-hidden="true">
+    <a href="#" id="mobileProjectsToggle">Publications ▾</a>
+    <div class="mobile-submenu" id="projectsSub">
+      <a href="/LCA">LCA</a>
+      <a href="/MaterialScience">Material Science</a>
+    </div>
+
+    <a href="/Talks">Talks</a>
+    <a href="/Leadership">Leadership</a>
+    <a href="CV_Shah_Research.pdf" target="_blank" rel="noopener">CV</a>
+    <a href="/Contact">Contact</a>
+  </div>
 
   <main>
     <h1>Conference, Industry & Academic Talks</h1>
@@ -228,25 +259,95 @@
   </footer>
 
   <script>
+    // footer year + brand click
     document.getElementById('year').textContent = new Date().getFullYear();
     document.getElementById('brand').addEventListener('click',()=>window.location.href='/');
 
     (function(){
       const DROPD_DELAY=200;
-      const drop=document.querySelector('[data-dropdown]');
-      if(!drop)return;
-      let hideTimer;
-      const trigger=drop.querySelector('a');
-      const menu=drop.querySelector('.dropdown-content');
-      function show(){clearTimeout(hideTimer);drop.classList.add('open');}
-      function hide(){drop.classList.remove('open');}
-      drop.addEventListener('mouseenter',show);
-      drop.addEventListener('mouseleave',()=>hideTimer=setTimeout(hide,DROPD_DELAY));
-      if(menu){
-        menu.addEventListener('mouseenter',show);
-        menu.addEventListener('mouseleave',()=>hideTimer=setTimeout(hide,DROPD_DELAY));
+
+      // Desktop dropdown hover + click (robust)
+      document.querySelectorAll('[data-dropdown]').forEach(drop=>{
+        let hideTimer;
+        const trigger = drop.querySelector(':scope > a');
+        const menu = drop.querySelector('.dropdown-content');
+        if(!trigger || !menu) return;
+
+        function show(){
+          clearTimeout(hideTimer);
+          drop.classList.add('open');
+          trigger.setAttribute('aria-expanded','true');
+          menu.style.display = 'block';
+        }
+        function hide(){
+          drop.classList.remove('open');
+          trigger.setAttribute('aria-expanded','false');
+          menu.style.display = '';
+        }
+
+        drop.addEventListener('mouseenter', show);
+        drop.addEventListener('mouseleave', ()=> hideTimer = setTimeout(hide, DROPD_DELAY));
+        menu.addEventListener('mouseenter', show);
+        menu.addEventListener('mouseleave', ()=> hideTimer = setTimeout(hide, DROPD_DELAY));
+
+        trigger.addEventListener('click', (e)=>{
+          e.preventDefault();
+          const isOpen = drop.classList.contains('open');
+          if(isOpen) hide(); else show();
+        });
+
+        // click outside closes
+        document.addEventListener('click', (ev)=>{
+          if(!drop.contains(ev.target)) hide();
+        });
+        document.addEventListener('keydown', (ev)=>{
+          if(ev.key === 'Escape') hide();
+        });
+      });
+
+      // Mobile panel logic
+      const burger = document.getElementById('burger');
+      const mobilePanel = document.getElementById('mobilePanel');
+      const projectsToggle = document.getElementById('mobileProjectsToggle');
+      const projectsSub = document.getElementById('projectsSub');
+
+      if (burger) {
+        burger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const open = mobilePanel.style.display === 'block';
+          mobilePanel.style.display = open ? 'none' : 'block';
+          mobilePanel.setAttribute('aria-hidden', open ? 'true' : 'false');
+          burger.setAttribute('aria-expanded', !open);
+        });
       }
-      trigger.addEventListener('click',e=>{e.preventDefault();drop.classList.toggle('open');});
+
+      if (projectsToggle) {
+        projectsToggle.addEventListener('click', (e) => {
+          e.preventDefault();
+          const open = projectsSub.style.display === 'block';
+          projectsSub.style.display = open ? 'none' : 'block';
+        });
+      }
+
+      // close mobile panel when clicking outside
+      document.addEventListener('click', (e) => {
+        if (window.innerWidth > 900) return;
+        const inside = e.target.closest('.mobile-panel') || e.target.closest('.burger');
+        if (!inside) {
+          if(mobilePanel) mobilePanel.style.display = 'none';
+          if(burger) burger.setAttribute('aria-expanded','false');
+          if(projectsSub) projectsSub.style.display = 'none';
+        }
+      });
+
+      // reset on resize
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 900) {
+          if(mobilePanel) mobilePanel.style.display = 'none';
+          if(burger) burger.setAttribute('aria-expanded','false');
+          if(projectsSub) projectsSub.style.display = 'none';
+        }
+      });
     })();
   </script>
 </body>
