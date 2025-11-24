@@ -53,7 +53,7 @@
     h1{font-size:26px;margin-bottom:24px;text-align:left;color:var(--text);}
     h2{font-size:20px;color:var(--duke-navy);margin-top:36px;margin-bottom:12px;border-left:4px solid var(--duke-navy);padding-left:10px;}
 
-    /* Extra-curricular row with blue role box */
+    /* Extra-curricular row with role pill below photo */
     .extra-row{
       display:flex;
       justify-content:space-between;
@@ -80,8 +80,9 @@
       font-weight:600;
       font-size:13px;
       padding:8px 10px;
-      border-radius:0;
+      border-radius:0 0 6px 6px;
       text-align:center;
+      margin:0;
     }
     .extra-item img{
       width:100%;
@@ -130,13 +131,14 @@
     }
 
     footer{max-width:var(--max-width);margin:40px auto;padding:0 20px 40px;color:var(--muted);font-size:14px;text-align:left;}
+    a:focus{outline:2px solid rgba(0,51,160,0.12);outline-offset:2px;}
   </style>
 </head>
 <body>
   <header class="topbar">
     <div class="topbar-inner">
-      <div class="brand" id="brand">
-        <div class="logo"><img src="duke_university-logo_brandlogos.net_hahhm-512x178.png" alt="Duke University logo"></div>
+      <div class="brand" id="brand" title="Home (click)">
+        <div class="logo"><img src="/mnt/data/duke_university-logo_brandlogos.net_hahhm-512x178.png" alt="Duke University logo"></div>
         <div class="name-block">
           <div class="name"><strong>Yash Shah</strong></div>
           <div class="role">Ph.D. Candidate in Environmental Engineering</div>
@@ -165,8 +167,8 @@
     <h2>Extra-curricular</h2>
     <div class="extra-row">
       <div class="extra-item">
-        <div class="role-pill">Founding Vice Chair — India Conference at Duke</div>
         <img src="icd.jpeg" alt="India Conference at Duke">
+        <div class="role-pill">Founding Vice Chair — India Conference at Duke</div>
         <div class="meta">
           <div>Launched the inaugural conference to promote knowledge exchange on India. Recruited and supervised a team of 20, curated a multidisciplinary agenda with various Duke schools, secured sponsorships, and coordinated logistics for 150+ attendees and 12 speakers.</div>
           <div class="dates">Apr 2024 — Apr 2025</div>
@@ -174,8 +176,8 @@
       </div>
 
       <div class="extra-item">
-        <div class="role-pill">Team Lead — Duke Innovation & Entrepreneurship Bootcamp</div>
         <img src="bootcamp.jpg" alt="Innovation Bootcamp">
+        <div class="role-pill">Team Lead — Duke Innovation &amp; Entrepreneurship Bootcamp</div>
         <div class="meta">
           <div>Led a team of 5 evaluating market viability of a water disinfection technology through ideation, human-centered design, competitor analysis, customer discovery, and storytelling.</div>
           <div class="dates">Jan 2025 — Feb 2025</div>
@@ -183,8 +185,8 @@
       </div>
 
       <div class="extra-item">
-        <div class="role-pill">Director-General & Co-Founder — International Model United Nations</div>
         <img src="mun.jpg" alt="Model United Nations">
+        <div class="role-pill">Director-General &amp; Co-Founder — International Model United Nations</div>
         <div class="meta">
           <div>Established the institute’s first Model United Nations (MUN) chapter, led the organizing team of 50, forged partnerships, and hosted 150+ delegates from India and neighboring countries.</div>
           <div class="dates">Apr 2018 — Apr 2019</div>
@@ -192,8 +194,8 @@
       </div>
 
       <div class="extra-item">
-        <div class="role-pill">President — Cognizen, The Current Affairs Club</div>
         <img src="cognizen.jpg" alt="Cognizen Club">
+        <div class="role-pill">President — Cognizen, The Current Affairs Club</div>
         <div class="meta">
           <div>Spearheaded group discussions on current affairs, organized club events during technical festivals, launched social initiatives like “We The People of NITR,” appointed a student team to develop the club Android app, and supported the well-being of 60+ members.</div>
           <div class="dates">Apr 2017 — Apr 2019</div>
@@ -204,24 +206,24 @@
     <h2>Mentorship</h2>
     <div class="section-cards">
       <div class="card">
-        <h3>Undergraduate Research Mentorship</h3>
-        <p>Mentored undergraduate researchers on nanomaterial synthesis, characterization, and LCA projects. Guided experimental design, data analysis, and manuscript preparation — resulting in conference presentations and co-authored papers.</p>
+        <h3>Research Mentorship</h3>
+        <p>Mentored 3 M.S. and 2 B.S. students in materials synthesis and characterization, from experimental design through data analysis and reporting, and ISO 14044 LCA techniques.</p>
       </div>
       <div class="card">
-        <h3>Peer Mentor — Graduate Mentorship Program</h3>
-        <p>Provided academic and career guidance to incoming graduate students, supporting their onboarding, skill-building, and integration into research labs and departmental life.</p>
+        <h3>Co-Founder — Project Polaris</h3>
+        <p>Launched and managed an 80+ member alumni mentorship network, centralizing guidance for students on higher education in India and abroad. (2020)</p>
       </div>
     </div>
 
     <h2>Teaching</h2>
     <div class="section-cards" style="margin-bottom:24px;">
       <div class="card">
-        <h3>Teaching Assistant — Environmental Engineering Fundamentals</h3>
-        <p>Assisted in course delivery and laboratory sessions (water treatment, reactor design) for 60+ students; developed lab exercises and assessment rubrics, and held office hours for student support.</p>
+        <h3>Teaching Assistant — Material Design in a Circular Economy</h3>
+        <p>Assisted with course administration, preparation of assignment and exam materials, and provided student support through weekly office hours.</p>
       </div>
       <div class="card">
-        <h3>Guest Lecturer — Life Cycle Assessment for Engineers</h3>
-        <p>Delivered invited lectures and practical exercises on applying life cycle thinking to materials selection, process evaluation, and sustainability metrics for engineering students.</p>
+        <h3>Guest Lecturer — Carbon: An Element of Change and Life</h3>
+        <p>Inspired M.S. students to tackle critical energy and environmental issues by demonstrating how the physicochemical properties of carbon materials can be tailored for sustainable solutions.</p>
       </div>
     </div>
   </main>
