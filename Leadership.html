@@ -53,14 +53,16 @@
     h1{font-size:26px;margin-bottom:24px;text-align:left;color:var(--text);}
     h2{font-size:20px;color:var(--duke-navy);margin-top:36px;margin-bottom:12px;border-left:4px solid var(--duke-navy);padding-left:10px;}
 
-    /* Extra-curricular grid (restored full-description grid) */
-    .extra-grid{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:var(--gap);
-      margin-top:8px;
+    /* Extra-curricular row with blue role box */
+    .extra-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:stretch;
+      gap:16px;
+      flex-wrap:nowrap;
     }
     .extra-item{
+      flex:1;
       background:#fff;
       border:1px solid #eee;
       border-radius:var(--card-radius);
@@ -69,11 +71,21 @@
       transition:transform 0.15s ease,box-shadow 0.15s ease;
       display:flex;
       flex-direction:column;
+      text-align:left;
     }
     .extra-item:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,0.08);}
+    .role-pill{
+      background:var(--duke-navy);
+      color:#fff;
+      font-weight:600;
+      font-size:13px;
+      padding:8px 10px;
+      border-radius:0;
+      text-align:center;
+    }
     .extra-item img{
       width:100%;
-      height:170px;
+      height:150px;
       object-fit:cover;
       display:block;
     }
@@ -83,12 +95,6 @@
       color:#333;
       line-height:1.5;
       flex:1;
-    }
-    .extra-item .meta .title{
-      font-weight:700;
-      color:#111;
-      margin-bottom:8px;
-      font-size:15px;
     }
     .extra-item .meta .dates{
       margin-top:10px;
@@ -118,31 +124,12 @@
     }
     .card p{margin:0;font-size:15px;line-height:1.6;color:#333;}
 
-    /* Resume bullets style */
-    .resume-bullet{
-      margin:10px 0;
-      padding-left:12px;
-      border-left:3px solid #f0f0f0;
-    }
-    .resume-bullet h4{
-      margin:0 0 6px 0;
-      font-size:15px;
-      color:#111;
-    }
-    .resume-bullet p{
-      margin:0;font-size:14px;color:#444;
-    }
-
-    @media(max-width:1100px){
-      .extra-grid{grid-template-columns:repeat(2,1fr);}
-    }
-    @media(max-width:700px){
-      .extra-grid{grid-template-columns:1fr;}
+    @media(max-width:900px){
+      .extra-row{flex-direction:column;}
       .section-cards{grid-template-columns:1fr;}
     }
 
     footer{max-width:var(--max-width);margin:40px auto;padding:0 20px 40px;color:var(--muted);font-size:14px;text-align:left;}
-    a:focus{outline:2px solid rgba(0,51,160,0.12);outline-offset:2px;}
   </style>
 </head>
 <body>
@@ -175,63 +162,54 @@
   <main>
     <h1>Leadership & Involvement</h1>
 
-    <!-- Extra-curricular section (3-column grid) -->
     <h2>Extra-curricular</h2>
-    <div class="extra-grid">
+    <div class="extra-row">
       <div class="extra-item">
+        <div class="role-pill">Founding Vice Chair — India Conference at Duke</div>
         <img src="icd.jpeg" alt="India Conference at Duke">
         <div class="meta">
-          <div class="title">Founding Vice Chair — India Conference at Duke</div>
           <div>Launched the inaugural conference to promote knowledge exchange on India. Recruited and supervised a team of 20, curated a multidisciplinary agenda with various Duke schools, secured sponsorships, and coordinated logistics for 150+ attendees and 12 speakers.</div>
           <div class="dates">Apr 2024 — Apr 2025</div>
         </div>
       </div>
 
       <div class="extra-item">
+        <div class="role-pill">Team Lead — Duke Innovation & Entrepreneurship Bootcamp</div>
         <img src="bootcamp.jpg" alt="Innovation Bootcamp">
         <div class="meta">
-          <div class="title">Team Lead — Duke Innovation &amp; Entrepreneurship Bootcamp</div>
           <div>Led a team of 5 evaluating market viability of a water disinfection technology through ideation, human-centered design, competitor analysis, customer discovery, and storytelling.</div>
           <div class="dates">Jan 2025 — Feb 2025</div>
         </div>
       </div>
 
       <div class="extra-item">
+        <div class="role-pill">Director-General & Co-Founder — International Model United Nations</div>
         <img src="mun.jpg" alt="Model United Nations">
         <div class="meta">
-          <div class="title">Director-General &amp; Co-Founder — International Model United Nations</div>
-          <div>Established the institute’s first Model United Nations (MUN) chapter, led the MUN organizing team of 50, forged partnerships, and hosted 150+ delegates from India and neighboring countries.</div>
+          <div>Established the institute’s first Model United Nations (MUN) chapter, led the organizing team of 50, forged partnerships, and hosted 150+ delegates from India and neighboring countries.</div>
           <div class="dates">Apr 2018 — Apr 2019</div>
         </div>
       </div>
 
       <div class="extra-item">
-        <img src="president.jpeg" alt="Cognizen Club">
+        <div class="role-pill">President — Cognizen, The Current Affairs Club</div>
+        <img src="cognizen.jpeg" alt="Cognizen Club">
         <div class="meta">
-          <div class="title">President — Cognizen, The Current Affairs Club</div>
           <div>Spearheaded group discussions on current affairs, organized club events during technical festivals, launched social initiatives like “We The People of NITR,” appointed a student team to develop the club Android app, and supported the well-being of 60+ members.</div>
-          <div class="dates">2017 — 2019</div>
+          <div class="dates">Apr 2017 — Apr 2019</div>
         </div>
       </div>
     </div>
 
-    <!-- Mentorship & Teaching -->
     <h2>Mentorship</h2>
     <div class="section-cards">
       <div class="card">
         <h3>Undergraduate Research Mentorship</h3>
-        <div class="resume-bullet">
-          <h4>Project supervision & co-authorship</h4>
-          <p>Mentored undergraduate researchers on nanomaterial synthesis, characterization, and LCA projects. Guided experimental design, data analysis, and manuscript preparation — resulting in conference presentations and co-authored papers.</p>
-        </div>
+        <p>Mentored undergraduate researchers on nanomaterial synthesis, characterization, and LCA projects. Guided experimental design, data analysis, and manuscript preparation — resulting in conference presentations and co-authored papers.</p>
       </div>
-
       <div class="card">
         <h3>Peer Mentor — Graduate Mentorship Program</h3>
-        <div class="resume-bullet">
-          <h4>Transition & career guidance</h4>
-          <p>Provided academic and career guidance to incoming graduate students, supporting their onboarding, skill-building, and integration into research labs and departmental life.</p>
-        </div>
+        <p>Provided academic and career guidance to incoming graduate students, supporting their onboarding, skill-building, and integration into research labs and departmental life.</p>
       </div>
     </div>
 
