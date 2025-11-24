@@ -191,76 +191,80 @@
 </main>
 
 <script>
-  // Desktop dropdown + hover with small hide delay
+  document.getElementById('homeLogo').addEventListener('click',()=>window.location.href='/');
+  document.getElementById('homePhoto').addEventListener('click',()=>window.location.href='/');
+
   (function(){
     const DROPD_DELAY = 200;
+
+    // --- Fixed Publications dropdown ---
     document.querySelectorAll('[data-dropdown]').forEach(drop=>{
       let hideTimer;
-      const trigger = drop.querySelector('a');
+      const trigger = drop.querySelector(':scope > a'); // only top-level
       const menu = drop.querySelector('.dropdown-content');
-      function show(){ clearTimeout(hideTimer); drop.classList.add('open'); trigger.setAttribute('aria-expanded','true'); }
-      function hide(){ drop.classList.remove('open'); trigger.setAttribute('aria-expanded','false'); }
+      if(!trigger || !menu) return;
+
+      function show(){ clearTimeout(hideTimer); drop.classList.add('open'); trigger.setAttribute('aria-expanded','true'); menu.style.display='block'; }
+      function hide(){ drop.classList.remove('open'); trigger.setAttribute('aria-expanded','false'); menu.style.display=''; }
+
       drop.addEventListener('mouseenter', show);
-      drop.addEventListener('mouseleave', ()=> hideTimer = setTimeout(hide, DROPD_DELAY) );
-      if(menu){
-        menu.addEventListener('mouseenter', show);
-        menu.addEventListener('mouseleave', ()=> hideTimer = setTimeout(hide, DROPD_DELAY) );
-      }
-      trigger.addEventListener('click', (e)=> {
+      drop.addEventListener('mouseleave', ()=> hideTimer=setTimeout(hide, DROPD_DELAY));
+      menu.addEventListener('mouseenter', show);
+      menu.addEventListener('mouseleave', ()=> hideTimer=setTimeout(hide, DROPD_DELAY));
+
+      trigger.addEventListener('click', (e)=>{
         e.preventDefault();
-        drop.classList.toggle('open');
-        trigger.setAttribute('aria-expanded', drop.classList.contains('open'));
+        const isOpen = drop.classList.contains('open');
+        if(isOpen) hide(); else show();
+      });
+
+      document.addEventListener('click', (ev)=>{
+        if(!drop.contains(ev.target)) hide();
+      });
+      document.addEventListener('keydown', (ev)=>{
+        if(ev.key === 'Escape') hide();
       });
     });
 
-    // Mobile panel toggle + publications submenu
+    // --- Mobile menu toggle ---
     const burger = document.getElementById('burger');
     const mobilePanel = document.getElementById('mobilePanel');
     const projToggle = document.getElementById('mobileProjectsToggle');
     const projSub = document.getElementById('projectsSub');
 
-    burger.addEventListener('click', (e) => {
+    burger.addEventListener('click', (e)=>{
       e.stopPropagation();
-      const open = mobilePanel.style.display === 'block';
-      mobilePanel.style.display = open ? 'none' : 'block';
-      mobilePanel.setAttribute('aria-hidden', open ? 'true' : 'false');
+      const open = mobilePanel.style.display==='block';
+      mobilePanel.style.display=open?'none':'block';
+      mobilePanel.setAttribute('aria-hidden', open?'true':'false');
       burger.setAttribute('aria-expanded', !open);
     });
 
-    projToggle.addEventListener('click', (e) => {
+    projToggle.addEventListener('click', (e)=>{
       e.preventDefault();
-      const open = projSub.style.display === 'block';
-      projSub.style.display = open ? 'none' : 'block';
-      projToggle.setAttribute('aria-expanded', !open);
+      const open = projSub.style.display==='block';
+      projSub.style.display=open?'none':'block';
     });
 
-    // Close mobile panel when tapped outside (mobile)
-    document.addEventListener('click', (e) => {
-      if (window.innerWidth > 900) return;
+    document.addEventListener('click', (e)=>{
+      if(window.innerWidth>900) return;
       const inside = e.target.closest('.mobile-panel') || e.target.closest('.burger');
-      if (!inside){
-        mobilePanel.style.display = 'none';
+      if(!inside){
+        mobilePanel.style.display='none';
         mobilePanel.setAttribute('aria-hidden','true');
         burger.setAttribute('aria-expanded','false');
-        projSub.style.display = 'none';
-        projToggle && projToggle.setAttribute('aria-expanded','false');
+        projSub.style.display='none';
       }
     });
 
-    // Reset when resizing to desktop
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 900){
-        mobilePanel.style.display = 'none';
+    window.addEventListener('resize', ()=>{
+      if(window.innerWidth>900){
+        mobilePanel.style.display='none';
         mobilePanel.setAttribute('aria-hidden','true');
         burger.setAttribute('aria-expanded','false');
-        projSub.style.display = 'none';
-        projToggle && projToggle.setAttribute('aria-expanded','false');
+        projSub.style.display='none';
       }
     });
-
-    // clicking logo/photo -> homepage root
-    document.getElementById('homeLogo').addEventListener('click', ()=> window.location.href = '/');
-    document.getElementById('homePhoto').addEventListener('click', ()=> window.location.href = '/');
   })();
 </script>
 </body>
