@@ -115,14 +115,7 @@
     <button class="burger" id="burger">☰ <span>Menu</span></button>
   </div>
 </header>
-<!-- include shared nav -->
-<div id="shared-nav"></div>
-<script>
-  // Load shared nav HTML into each page
-  fetch('/nav-shared.html')
-    .then(res => res.text())
-    .then(html => document.getElementById('shared-nav').innerHTML = html);
-</script>
+
 
 <main>
   <div class="grid">
